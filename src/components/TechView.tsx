@@ -175,7 +175,7 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
               <img 
                 src={
                   activeSection === 'modular' 
-                    ? '/src/assets/images/regenerated_image_1779655862553.webp'
+                    ? 'https://img-reg-ab.imagency.cn/e/eba0d9454fb1aeaa74d4b3276669c01c.png'
                     : activeSection === 'silent'
                     ? 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80'
                     : 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1200&q=80'
@@ -229,7 +229,7 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
             {/* Right graphic presentation (Clean borderless style) */}
             <div className="lg:col-span-7 rounded-[2rem] overflow-hidden aspect-[16/9] bg-white border border-stone-200/50 shadow-luxury relative group">
               <img 
-                src="/src/assets/images/regenerated_image_1779652631047.jpg" 
+                src="https://img-reg-ab.imagency.cn/e/eba0d9454fb1aeaa74d4b3276669c01c.png" 
                 alt="Aesthetic closeup of timber and leather texture" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-all duration-[4000ms]"
                 referrerPolicy="no-referrer"
@@ -322,7 +322,7 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
             {/* Right graphic presentation (Clean Image-Only style, as requested) */}
             <div className="lg:col-span-7 rounded-[2rem] overflow-hidden aspect-[16/9] bg-white border border-stone-200/50 shadow-luxury relative group">
               <img 
-                src="/src/assets/images/regenerated_image_1779652629465.webp" 
+                src="https://img-reg-ab.imagency.cn/e/eba0d9454fb1aeaa74d4b3276669c01c.png" 
                 alt="Architectural space safety stability design" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700 hover:scale-105"
                 referrerPolicy="no-referrer"
