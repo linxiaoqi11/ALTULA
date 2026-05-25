@@ -1,0 +1,6 @@
+{
+  "name": "ALTULA",
+  "description": "ALTULA 致力于商业空间活动看台，提供伸缩活动看台与公共坐席看台，极简轻奢，智能高效，让空间拥有变化的能力。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
