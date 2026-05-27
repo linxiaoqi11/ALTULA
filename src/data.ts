@@ -7,7 +7,7 @@ export const productsData: Product[] = [
     slogan: '隐于无形，展于惊艳',
     description: '专为多功能场馆与高端商业空间设计，一键实现平地与阶梯看台的自由切换，最大化释放空间商业价值。',
     image: 'https://img-reg-ab.imagency.cn/e/02bbb6f33a36a708c3eb24284967254a.jpg',
-    series: ['维格', 'Crear', 'B系列'],
+    series: ['维格 Wellgo', 'concepto', 'orden', '豪晟前置', '豪晟后置'],
     features: ['灵活收放 · 空间重生 · Crear技术', '静音电动控制 · 极致隐藏'],
     advantages: [
       {
@@ -43,7 +43,7 @@ export const productsData: Product[] = [
     slogan: '秩序之美，融入空间',
     description: '适用于固定场馆、高端学术报告厅 and 会议中心，提供符合人体工学的卓越舒适承载与长久耐用的高端德系品质工艺。',
     image: 'https://img-reg-ab.imagency.cn/e/dc5395da5efbb8d2d7798f4005768381.jpg',
-    series: ['A系列', 'B系列', 'C系列'],
+    series: ['A', 'B', 'C'],
     features: ['美学融入 · 固定秩序 · 人体工学', '持久舒适 · 精密实木工艺'],
     advantages: [
       {

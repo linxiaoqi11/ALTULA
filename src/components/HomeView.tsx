@@ -164,16 +164,12 @@ export default function HomeView({ onNavigate, language }: HomeViewProps) {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                 />
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
-                <div className="absolute bottom-6 left-6 right-6 flex gap-2 z-20">
-                  <span className="bg-white/90 backdrop-blur-md text-xs px-3 py-1 rounded-full text-brand-dark font-medium">
-                    {language === 'CN' ? '维格' : 'Wellgo'}
-                  </span>
-                  <span className="bg-white/90 backdrop-blur-md text-xs px-3 py-1 rounded-full text-brand-dark font-medium">
-                    {language === 'CN' ? 'Crear' : 'Crear'}
-                  </span>
-                  <span className="bg-white/90 backdrop-blur-md text-xs px-3 py-1 rounded-full text-brand-dark font-medium">
-                    {language === 'CN' ? 'B系列' : 'B-Series'}
-                  </span>
+                <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-1.5 z-20">
+                  {['维格Wellgo', 'concepto', 'orden', '豪晟前置', '豪晟后置'].map((s) => (
+                    <span key={s} className="bg-white/95 backdrop-blur-md text-[10px] px-2.5 py-1 rounded-full text-brand-dark font-semibold">
+                      {s}
+                    </span>
+                  ))}
                 </div>
               </div>
               <h4 className="text-2xl font-semibold text-brand-dark mb-3 group-hover:text-brand-gold transition-colors">
@@ -198,16 +194,12 @@ export default function HomeView({ onNavigate, language }: HomeViewProps) {
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
                 />
                 <div className="absolute inset-0 bg-black/5 group-hover:bg-black/0 transition-colors duration-500"></div>
-                <div className="absolute bottom-6 left-6 right-6 flex gap-2 z-20">
-                  <span className="bg-brand-dark/90 backdrop-blur text-xs px-3 py-1 rounded-full text-white font-medium">
-                    {language === 'CN' ? 'A系列' : 'A-Series'}
-                  </span>
-                  <span className="bg-brand-dark/90 backdrop-blur text-xs px-3 py-1 rounded-full text-white font-medium">
-                    {language === 'CN' ? 'B系列' : 'B-Series'}
-                  </span>
-                  <span className="bg-brand-dark/90 backdrop-blur text-xs px-3 py-1 rounded-full text-white font-medium">
-                    {language === 'CN' ? 'C系列' : 'C-Series'}
-                  </span>
+                <div className="absolute bottom-4 left-4 right-4 flex flex-wrap gap-1.5 z-20">
+                  {['A', 'B', 'C'].map((s) => (
+                    <span key={s} className="bg-brand-dark/95 backdrop-blur text-[10px] px-3 py-1 rounded-full text-white font-semibold">
+                      {language === 'CN' ? `${s}系列` : `Series ${s}`}
+                    </span>
+                  ))}
                 </div>
               </div>
               <h4 className="text-2xl font-semibold text-brand-dark mb-3 group-hover:text-brand-gold transition-colors">
