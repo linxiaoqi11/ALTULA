@@ -80,6 +80,7 @@ export default function DetailView({ productId, onNavigate, language }: DetailVi
   const [activeGalleryIndex, setActiveGalleryIndex] = useState<number | null>(null);
   const [activePhilosophyIndex, setActivePhilosophyIndex] = useState(0);
   const [activeScenarioIndex, setActiveScenarioIndex] = useState(0);
+  const [activeSafetyTab, setActiveSafetyTab] = useState(0);
   const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200);
 
   useEffect(() => {
@@ -290,7 +291,7 @@ export default function DetailView({ productId, onNavigate, language }: DetailVi
         'Bottom integrated drawer bins house auxiliary folding chairs, equipment, and presentation kits.',
         'Fully flush minimalist appearance. Folded fixtures hide all mechanical shafts to look seamless.'
       ],
-      image: 'https://img-reg-ab.imagency.cn/e/8a48cfe1be17841fb3bf8ec91e4e12a2.webp'
+      image: 'https://img-reg-ab.imagency.cn/e/062a5581598178b5257ef42ce6d0ccd6.webp'
     },
     {
       tab_name: language === 'CN' ? '内置不间断供电' : 'Built-in Uninterrupted Power',
@@ -305,7 +306,7 @@ export default function DetailView({ productId, onNavigate, language }: DetailVi
         'Concurrent high-efficiency charging safely satisfies modern laptop and smartphone demands.',
         'Concealed cable lines run within inner conduits to ensure zero external cable clutter.'
       ],
-      image: 'https://img-reg-ab.imagency.cn/e/dc5395da5efbb8d2d7798f4005768381.jpg'
+      image: 'https://img-reg-ab.imagency.cn/e/e79dd881776a70d553159dc0012a684f.webp'
     }
   ];
 
@@ -612,7 +613,7 @@ export default function DetailView({ productId, onNavigate, language }: DetailVi
           <div className="grid grid-cols-1 lg:grid-cols-10 gap-8 lg:gap-12 items-stretch">
             
             {/* Left Column: Interactive Scenario Items List (1 to 7) (Ratio: 3) */}
-            <div className="lg:col-span-3 flex flex-col justify-center space-y-3 order-first">
+            <div className="lg:col-span-3 flex flex-col justify-between lg:h-full space-y-3 lg:space-y-0 order-first">
               {[
                 {
                   id: 1,
@@ -722,71 +723,61 @@ export default function DetailView({ productId, onNavigate, language }: DetailVi
               ].map((scenario, index) => {
                 const isActive = activeScenarioIndex === index;
                 return (
-                  <button
-                    key={scenario.id}
-                    onClick={() => setActiveScenarioIndex(index)}
-                    className={`w-full text-left p-4 md:p-5 rounded-2xl transition-all duration-300 flex items-start gap-4 border cursor-pointer outline-none ${
-                      isActive 
-                        ? 'bg-white border-brand-gold/60 shadow-md translate-x-2' 
-                        : 'bg-white/40 hover:bg-white/80 border-transparent hover:translate-x-1'
-                    }`}
-                  >
-                    {/* Index Circle Indicator */}
-                    <span className={`w-8 h-8 rounded-full flex items-center justify-center font-mono font-bold text-xs shrink-0 transition-colors duration-300 ${
-                      isActive 
-                        ? 'bg-brand-gold text-white shadow' 
-                        : 'bg-gray-100 text-gray-400'
-                    }`}>
-                      0{scenario.id}
-                    </span>
-
-                    {/* Content Details */}
-                    <div className="flex-1">
-                      <div className="flex justify-between items-center">
-                        <h4 className={`text-sm md:text-base font-bold transition-colors duration-300 ${
-                          isActive ? 'text-brand-dark font-black' : 'text-gray-600'
-                        }`}>
-                          {language === 'CN' ? scenario.titleCN : scenario.titleEN}
-                        </h4>
-                        
-                        {/* Dynamic Active Indicator */}
-                        {isActive && (
-                          <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse shrink-0" />
-                        )}
-                      </div>
-
-                      {/* Expandable Bullets Panel */}
-                      <div className={`transition-all duration-500 overflow-hidden ${
-                        isActive ? 'max-h-56 opacity-100 mt-3 pt-3 border-t border-gray-100' : 'max-h-0 opacity-0'
+                  <React.Fragment key={scenario.id}>
+                    <button
+                      onClick={() => setActiveScenarioIndex(index)}
+                      className={`w-full text-left p-4 md:p-5 rounded-2xl transition-all duration-300 flex items-center gap-4 border cursor-pointer outline-none ${
+                        isActive 
+                          ? 'bg-white border-brand-gold/60 shadow-md translate-x-2 z-10' 
+                          : 'bg-transparent border-transparent hover:translate-x-1 hover:bg-black/[0.01]'
+                      }`}
+                    >
+                      {/* Index Circle Indicator */}
+                      <span className={`w-8 h-8 rounded-full flex items-center justify-center font-mono font-bold text-xs shrink-0 transition-colors duration-300 ${
+                        isActive 
+                          ? 'bg-brand-gold text-white shadow' 
+                          : 'bg-gray-100 text-gray-400'
                       }`}>
-                        <ul className="space-y-1.5 text-xs text-gray-500 font-light list-none">
-                          {(language === 'CN' ? scenario.bulletsCN : scenario.bulletsEN).map((bullet, bIdx) => (
-                            <li key={bIdx} className="flex items-start gap-1 text-left">
-                              <span className="text-brand-gold mr-1 mt-1 font-bold text-[8px] select-none">•</span>
-                              <span className="leading-relaxed">{bullet}</span>
-                            </li>
-                          ))}
-                        </ul>
+                        0{scenario.id}
+                      </span>
+
+                      {/* Content Details */}
+                      <div className="flex-1">
+                        <div className="flex justify-between items-center">
+                          <h4 className={`text-sm md:text-base font-bold transition-colors duration-300 ${
+                            isActive ? 'text-brand-dark font-black' : 'text-gray-600'
+                          }`}>
+                            {language === 'CN' ? scenario.titleCN : scenario.titleEN}
+                          </h4>
+                          
+                          {/* Dynamic Active Indicator */}
+                          {isActive && (
+                            <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse shrink-0" />
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  </button>
+                    </button>
+                    {index < 6 && (
+                      <div className="border-b border-gray-200/50 my-1 mx-5" />
+                    )}
+                  </React.Fragment>
                 );
               })}
             </div>
 
             {/* Right Column: Visual Media Display (Dynamic Image Showroom) (Ratio: 7) */}
-            <div className="lg:col-span-7 flex flex-col justify-between relative min-h-[350px] md:min-h-[450px] lg:min-h-[550px] bg-brand-dark rounded-3xl overflow-hidden shadow-luxury">
+            <div className="lg:col-span-7 flex flex-col justify-between relative aspect-[4/2] w-full bg-brand-dark rounded-3xl overflow-hidden shadow-luxury">
               
               {/* Dynamic Image with elegant transitions */}
               {(() => {
                 const scenarioImages = [
-                  'https://img-reg-ab.imagency.cn/e/02bbb6f33a36a708c3eb24284967254a.jpg', // 商务大会
-                  'https://img-reg-ab.imagency.cn/e/736c313958ba791f34e22b7b1dd62240.webp', // 培训学习
-                  'https://img-reg-ab.imagency.cn/e/dc5395da5efbb8d2d7798f4005768381.jpg',   // 总结大会
-                  'https://img-reg-ab.imagency.cn/e/f77ee005ec194f8323d0bbaa4d26852d.webp', // 会议&候场休息
-                  'https://img-reg-ab.imagency.cn/e/af3a1511b2e4bc9f5f948cb183cd34cc.webp', // 会议&沙龙
-                  'https://img-reg-ab.imagency.cn/e/faba224b11cbeb566081df8eff866c4d.jpg',   // 双会议室
-                  'https://img-reg-ab.imagency.cn/e/f0dc8e86ea57a93f18f933e36b564256.jpg',   // 团建空间
+                  'https://img-reg-ab.imagency.cn/e/9b961ba39236b0833d5c9e57a1e3b405.webp', // 商务大会
+                  'https://img-reg-ab.imagency.cn/e/44423fc20c7bde9ffca978593c50a5d0.webp', // 培训学习
+                  'https://img-reg-ab.imagency.cn/e/f03a27dc7ed77345e5f2a89fe3877cf6.webp',   // 总结大会
+                  'https://img-reg-ab.imagency.cn/e/6bf071b13539cd88b68397e6efd1442c.webp', // 会议&候场休息
+                  'https://img-reg-ab.imagency.cn/e/6faf09dcf580d11a9d93c4f081cb4349.webp', // 会议&沙龙
+                  'https://img-reg-ab.imagency.cn/e/60c41176b419948abc900f6b5572210d.webp',   // 双会议室
+                  'https://img-reg-ab.imagency.cn/e/cee42a1a0d61298acc52692a91b589b5.webp',   // 团建空间
                 ];
                 const activeImg = scenarioImages[activeScenarioIndex] || scenarioImages[0];
                 return (
@@ -797,7 +788,7 @@ export default function DetailView({ productId, onNavigate, language }: DetailVi
                       className="absolute inset-0 w-full h-full object-cover transition-all duration-700 ease-in-out scale-102"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-black/40" />
+                    <div className="absolute bottom-0 left-0 right-0 h-[60%] bg-gradient-to-t from-black/95 via-black/40 to-transparent pointer-events-none" />
                   </div>
                 );
               })()}
@@ -832,7 +823,7 @@ export default function DetailView({ productId, onNavigate, language }: DetailVi
                     <h3 className="text-2xl md:text-3xl font-black text-white tracking-tight leading-none mb-3">
                       {language === 'CN' ? scenarioTitlesCN[activeScenarioIndex] : scenarioTitlesEN[activeScenarioIndex]}
                     </h3>
-                    <p className="text-gray-300 font-light text-xs md:text-sm leading-relaxed max-w-xl">
+                    <p className="text-gray-300 font-light text-xs md:text-sm leading-relaxed max-w-3xl">
                       {language === 'CN' ? 
                         [
                           '看台全展开，形成标准阶梯式观众席。每排视线无阻，带来尊贵极端的开阔会场视野。',
@@ -1003,201 +994,185 @@ export default function DetailView({ productId, onNavigate, language }: DetailVi
 
 
 
-      {/* ── Section 6: Synchronized Multi-Parameter Configurator Simulator ── */}
-      <section className="py-20 bg-brand-light border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
-          
-          {/* Left Block: Realtime Seat Rendering Image */}
-          <div className="space-y-4 w-full">
-            <div className="flex justify-between items-center mb-1">
-              <h3 className="text-xs font-bold uppercase tracking-widest text-brand-gold flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-brand-gold animate-pulse"></span>
-                <span>{language === 'CN' ? '坐席效果图' : 'Seat Rendering'}</span>
-              </h3>
-            </div>
+      {/* ── Section 6: Safety Configuration Module from TechView ── */}
+      <div id="safety-config-section" className="w-full bg-[#1E2022] border-y border-neutral-800/40 py-20 md:py-28 relative overflow-hidden text-white">
+        <div className="absolute inset-0 bg-[url('https://img-reg-ab.imagency.cn/e/12a8e9f16fde300a0ac15cd7ae7de2b8.webp')] bg-cover bg-center opacity-12 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-black/48 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-brand-gold/5 via-transparent to-transparent opacity-80 pointer-events-none"></div>
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-15 pointer-events-none"></div>
 
-            <div className="relative aspect-[16/10] w-full rounded-2xl bg-[#090A0B] overflow-hidden group shadow-luxury border border-gray-200/50">
-              <img 
-                src={getDetailSeatImage()} 
-                alt={language === 'CN' ? '坐席效果图' : 'Seat Rendering'} 
-                className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
-                referrerPolicy="no-referrer"
-              />
-              {/* Ambient gradients */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30 pointer-events-none z-10"></div>
+        <div className="max-w-7xl mx-auto px-6 md:px-12">
+          {/* Interactive reference layout: Left big image display, Right dynamic texts and 2x2 cards */}
+          {(() => {
+            const safetyProtocols = [
+              {
+                idx: 0,
+                num: '01',
+                btnTitleCN: '自研安全数控芯片',
+                btnTitleEN: 'Intelligent Safety Chip',
+                btnDescCN: '安全主控芯片配置，异常数据0.1秒级极速响应。',
+                btnDescEN: 'Proprietary core chip executes quick stop logic.',
+                categoryCN: '智能智脑 | CORE BRAIN',
+                categoryEN: 'DIGITAL INTELLECTUAL | CORE BRAIN',
+                mainTitleCN: '智能主控芯片，从源头保障看台安全运转',
+                mainTitleEN: 'Intelligent Active Brain-Control Chip Core System',
+                detailDescCN: '自研云枢核心数控芯片为系统提供了最底层的数字主控防卫。实时监测并深度校核电机力矩、高压电流及机械运转角位移，一经检出异常负荷或非预置位冲力，将立即在0.1秒内触发紧急闭合停机指令，全域杜绝由于传统机电抖振、感应盲点带来的冲暴损伤。',
+                detailDescEN: 'Our digital brain coordinates micro-metric datasets directly from key sensory circuits. Integrates robust physical-shield filters to safeguard stable operation logic.',
+                image: 'https://img-reg-ab.imagency.cn/e/9f41c71e27f68a5ed64a7dd5411341b7.jpg'
+              },
+              {
+                idx: 1,
+                num: '02',
+                btnTitleCN: '航空铝超承载骨架',
+                btnTitleEN: 'Aerospace Structural Framework',
+                btnDescCN: '高张力重度加筋合金框架，单座承重≥150kg。',
+                btnDescEN: 'Lightweight high-rigidity aeron-metals distribution.',
+                categoryCN: '结构冗余 | MATERIAL INTEGRITY',
+                categoryEN: 'STRUCTURAL REDUNDANCY | STRENGTH PROFILE',
+                mainTitleCN: '精铸航天级核心受力排骨架，抗扰稳如泰山',
+                mainTitleEN: 'Military-Spec Aerospace Aluminum Profile Framework',
+                detailDescCN: '整体承重核心精选兼有高弹性模量、极轻质量的航空级抗腐蚀压延铝合金拼机。底部经机器人一体激光融焊打磨成形，内设双向纵梁十字交叉剪刀撑，单座抗剪预载可保证≥150kg；整机多向均匀传导动荷能量，安全稳定性极大超越特种复杂承载行业资质。',
+                detailDescEN: 'Forged from premier weight-bearing structural metals. Double cross-girder supports safely endure up to ≥150kg per single active tier, maintaining peak structural flexibility.',
+                image: 'https://img-reg-ab.imagency.cn/e/1f261656c79a3b5a014673e90e744f8e.jpg'
+              },
+              {
+                idx: 2,
+                num: '03',
+                btnTitleCN: '全封闭缝隙防坠落挡板',
+                btnTitleEN: 'Fall-Prevention Barrier',
+                btnDescCN: '平台排间全覆盖防护挡封，保障人体与杂物安全。',
+                btnDescEN: 'Complete overlapping covers block debris dropping inside.',
+                categoryCN: '精细防线 | GAP BARRIERS',
+                categoryEN: 'TACTICAL SHIELDS | SAFETY OVERLAP BARRIERS',
+                mainTitleCN: '全封闭平台防坠系统，消灭任何咬合盲区',
+                mainTitleEN: 'Overlapping Fall-Shields For Extreme Gap Protection',
+                detailDescCN: '看台排与排之间装配有度角契合的不锈钢密封防坠挡块。台阶动作合拢、拉伸时全程严密咬合覆盖，不留下机械空隙，从而将精密连杆传动件及螺母导轨槽全面覆护，有效杜绝随身小物件如手机、首饰跌落卷噬，同时降低噪音达30%以上，更柔和低噪。',
+                detailDescEN: 'Fully sealed flexible side blocking panel shields are integrated beneath every active step overlap to prevent items like jewelry or phones from accidentally rolling into gear lines.',
+                image: 'https://img-reg-ab.imagency.cn/e/2effed62039f391297e9eee589427d67.jpg'
+              },
+              {
+                idx: 3,
+                num: '04',
+                btnTitleCN: '主动式毫米波探测防闯入',
+                btnTitleEN: 'Intruders Detection Radar',
+                btnDescCN: '毫米波雷达360°扇状扫描，遇障阻毫秒级自锁。',
+                btnDescEN: 'High-frequency radar constructs border warnings online.',
+                categoryCN: '主动感知 | ACTIVE SAFETY',
+                categoryEN: 'ACTIVE SCANNING | ELECTROMAGNETIC FIELD',
+                mainTitleCN: '高敏雷达微米主动防闯入，瞬时阻尼锁死',
+                mainTitleEN: 'High-Precision Micro-Radar Dynamic Anti-Intrusion Shield',
+                detailDescCN: '于看台下方多侧集成定轴微米级毫米波有源感应雷达矩阵，360°向外构建空气感知边界。不受多灰沙尘及反射光条件折绕限制。看台机电拉合过程中，一旦有外在肢体、杂物障碍、儿童及温血宠物侵犯警告防线，主板在10毫秒内触发智能停止运行。',
+                detailDescEN: 'Embedded ultra-high resolution microwave transmitters create dynamic warnings mapping space detail around rotating paths, completely eliminating risk elements.',
+                image: 'https://img-reg-ab.imagency.cn/e/a05e5b996f92b5642e010bd4cb7c2153.jpg'
+              }
+            ];
 
-              {/* Spec metadata overlays (Match Configurator layout) */}
-              <div className="absolute top-6 left-6 z-20 bg-black/60 backdrop-blur-md rounded-lg py-3 px-4 border border-white/10 text-[10px] text-gray-300 grid grid-cols-2 gap-x-6 gap-y-1.5 font-light max-w-[85%] border-t border-l border-white/20">
-                <div>
-                  <span className="text-gray-400">{language === 'CN' ? '结构系列：' : 'Framework: '}</span>
-                  <span className="text-white font-medium">{detailConfig.style}</span>
+            const activeItem = safetyProtocols[activeSafetyTab] || safetyProtocols[0];
+
+            return (
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mt-4 relative z-20">
+                {/* Left Column: Premium Rounded showcase card with integrated text inside */}
+                <div className="lg:col-span-7 flex flex-col justify-start relative">
+                  <div className="relative aspect-[4/3] w-full rounded-[2.5rem] overflow-hidden border border-neutral-800/40 shadow-2xl group bg-[#111214]">
+                    {/* Visual representation */}
+                    <img 
+                      src={activeItem.image} 
+                      alt={language === 'CN' ? activeItem.btnTitleCN : activeItem.btnTitleEN} 
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-103"
+                      referrerPolicy="no-referrer"
+                    />
+                    
+                    {/* Rich dark gradient mask - sized to match text content height for clean image presentation */}
+                    <div className="absolute bottom-0 left-0 right-0 h-[55%] bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-10"></div>
+                    
+                    {/* Bottom-left integrated text within image frame with great readability */}
+                    <div className="absolute bottom-8 left-8 right-8 z-20 text-left space-y-3.5 animate-fade-in pointer-events-none">
+                      <div className="flex items-center gap-2">
+                        <span className="text-brand-gold text-[10px] font-mono font-bold tracking-widest uppercase bg-brand-gold/20 px-2 py-0.5 rounded-md">
+                          {activeItem.num}
+                        </span>
+                        <h4 className="text-base md:text-lg font-black text-white uppercase tracking-tight">
+                          {language === 'CN' ? activeItem.btnTitleCN : activeItem.btnTitleEN}
+                        </h4>
+                      </div>
+                      <p className="text-stone-100 font-normal text-xs md:text-[13px] leading-relaxed">
+                        {language === 'CN' ? activeItem.detailDescCN : activeItem.detailDescEN}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <span className="text-gray-400">{language === 'CN' ? '看台等级：' : 'Class: '}</span>
-                  <span className="text-white font-medium">
-                    {detailConfig.productType === 'retractable' ? (language === 'CN' ? '活动看台' : 'Retractable') : (language === 'CN' ? '固定看台' : 'Public')}
-                  </span>
-                </div>
-                <div>
-                  <span className="text-gray-400">{language === 'CN' ? '踏步板材：' : 'Pedal Timber: '}</span>
-                  <span className="text-white font-medium">
-                    {detailConfig.pedals === 'wood' ? (language === 'CN' ? '皇家原木原色' : 'Royal Hardwood') : (language === 'CN' ? '防滑碳纤' : 'Carbon Composite')}
-                  </span>
-                </div>
-                <div>
-                  <span className="text-gray-400">{language === 'CN' ? '辅助电子器：' : 'Electronics: '}</span>
-                  <span className="text-white font-medium font-sans">
-                    {language === 'CN' ? '智能加持已配' : 'Smart Active'}
-                  </span>
-                </div>
-              </div>
 
-              {/* Custom visual element overlay e.g. Selected color badge */}
-              <div className="absolute bottom-6 left-6 z-20 flex items-center gap-2">
-                <span className="w-3.5 h-3.5 rounded-full border border-white/20 shadow-inner" style={{ backgroundColor: mapDetailColorHex() }}></span>
-                <span className="text-[10px] text-white/95 font-mono tracking-wider font-light bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/10">
-                  {detailColorsList.find(c => c.value === detailConfig.color)?.name || detailConfig.color}
-                </span>
-              </div>
-
-              {/* Scale marker line */}
-              <div className="absolute bottom-6 right-6 z-20 flex items-center gap-3">
-                <span className="text-[9px] text-white/70 tracking-widest uppercase font-mono bg-black/50 backdrop-blur-sm px-2.5 py-1 rounded-md border border-white/10">
-                  ALTULA INDUSTRIAL SPEC
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Block: Fully Functional Compact Parameter Configurator */}
-          <div className="bg-white p-7 rounded-3xl shadow-luxury border border-gray-105 flex flex-col justify-between self-stretch space-y-6 w-full">
-            <div>
-              <span className="text-brand-gold text-[10px] uppercase font-bold tracking-widest font-mono block mb-1">REALTIME DIGITAL PREVIEW</span>
-              <h4 className="text-lg font-black text-brand-dark uppercase tracking-wide">{language === 'CN' ? '看台坐席配置方案实时校对' : 'Seating Specification Configurator'}</h4>
-              <p className="text-[11px] text-gray-400 mt-1 font-light leading-relaxed">
-                {language === 'CN' ? '在线随心选择各项参数，左侧效果图将随选择实时更新进行。' : 'Adjust the exact parameters below; rendering updates dynamically.'}
-              </p>
-            </div>
-
-            {/* Config Options Form */}
-            <div className="space-y-4">
-              
-              {/* Option 1: Core Class */}
-              <div className="space-y-1.5">
-                <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest block">{language === 'CN' ? '核心看台系统架构' : 'STAND SYSTEM ARCHITECTURE'}</label>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    type="button"
-                    onClick={() => setDetailConfig({ ...detailConfig, productType: 'retractable', style: 'Wellgo 维格型' })}
-                    className={`py-2 px-3 rounded-lg border text-left transition-all cursor-pointer ${
-                      detailConfig.productType === 'retractable'
-                        ? 'border-brand-gold bg-brand-gold/5 text-brand-dark font-semibold'
-                        : 'border-gray-200 text-gray-500 hover:border-gray-300'
-                    }`}
-                  >
-                    <span className="text-xs block">{language === 'CN' ? '伸缩活动看台' : 'Retractable Stand'}</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => setDetailConfig({ ...detailConfig, productType: 'public', style: 'Orden 方角高定' })}
-                    className={`py-2 px-3 rounded-lg border text-left transition-all cursor-pointer ${
-                      detailConfig.productType === 'public'
-                        ? 'border-brand-gold bg-brand-gold/5 text-brand-dark font-semibold'
-                        : 'border-gray-200 text-gray-500 hover:border-gray-300'
-                    }`}
-                  >
-                    <span className="text-xs block">{language === 'CN' ? '固定看台公共坐席' : 'Permanent Seating'}</span>
-                  </button>
-                </div>
-              </div>
-
-              {/* Option 2: Silhouette Style */}
-              <div className="space-y-1.5">
-                <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest block">{language === 'CN' ? '座椅靠背剖面设计' : 'SEATING CONTOUR SILHOUETTE'}</label>
-                <div className="grid grid-cols-3 gap-2">
-                  {detailStylesList.map((st) => (
-                    <button
-                      key={st.name}
-                      type="button"
-                      onClick={() => setDetailConfig({ ...detailConfig, style: st.name })}
-                      className={`py-2 px-2 rounded-lg border text-center transition-all cursor-pointer ${
-                        detailConfig.style === st.name
-                          ? 'border-brand-gold bg-brand-gold/5 text-brand-dark font-semibold'
-                          : 'border-gray-200 text-gray-500 hover:border-gray-300'
-                      }`}
-                    >
-                      <span className="text-[10px] block truncate">{language === 'CN' ? st.name.split(' ')[0] : st.name_en}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Option 3: Color swatches */}
-              <div className="space-y-1.5">
-                <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest block">{language === 'CN' ? '高质多色精选面料' : 'UPHOLSTERY TEXTURE COLOR'}</label>
-                <div className="grid grid-cols-4 gap-2">
-                  {detailColorsList.map((col) => (
-                    <button
-                      key={col.value}
-                      type="button"
-                      onClick={() => setDetailConfig({ ...detailConfig, color: col.value })}
-                      title={col.name}
-                      className={`p-1.5 rounded-lg border flex flex-col items-center justify-center gap-1 transition-all cursor-pointer ${
-                        detailConfig.color === col.value
-                          ? 'border-brand-gold bg-brand-gold/5'
-                          : 'border-gray-100 hover:border-gray-300'
-                      }`}
-                    >
-                      <span className="w-5 h-5 rounded-full border border-black/10 shadow-inner block" style={{ backgroundColor: col.hex }}></span>
-                      <span className="text-[8px] text-gray-500 font-light truncate max-w-full block">
-                        {language === 'CN' ? col.name.substring(0, 2) : col.value}
+                {/* Right Column: General Safety Header & 2x2 layout buttons selectors */}
+                <div className="lg:col-span-5 flex flex-col justify-start py-2 space-y-6 md:space-y-8 relative z-25">
+                  
+                  {/* General Safety title representing the main theme */}
+                  <div className="space-y-4 text-left">
+                    <div className="flex items-center gap-2">
+                      <span className="text-brand-gold text-[10px] md:text-xs font-mono tracking-[0.25em] uppercase font-bold">
+                        {language === 'CN' ? '安全配置' : 'SAFETY CONFIGURATION'}
                       </span>
-                    </button>
-                  ))}
+                    </div>
+
+                    <h3 className="text-3.5xl md:text-[44px] lg:text-[48px] font-black text-white tracking-tight leading-tight md:leading-[1.1]">
+                      {language === 'CN' ? '安全是底层逻辑' : 'Safety is our Foundational Logic'}
+                    </h3>
+
+                    <p className="text-stone-200 font-normal text-sm md:text-[14.5px] leading-relaxed max-w-2xl mt-3">
+                      {language === 'CN'
+                        ? '安全不仅是标准，更是 ALTULA 产品设计的底层逻辑。我们构建了从硬件到软件的全维度安全防护体系，多重机制相互配合，让每一次使用都安全无虞。'
+                        : 'Safety is not just an industry standard, but the foundational philosophy of ALTULA product design. We have built a comprehensive dimensional safety protection framework from hardware to software integrating multiple mechanisms seamlessly.'}
+                    </p>
+                  </div>
+
+                  {/* 2x2 selector tab cards panel representing "极致细节追求" counterpart */}
+                  <div className="text-left relative z-30">
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      {safetyProtocols.map((item) => {
+                        const isActive = activeSafetyTab === item.idx;
+                        return (
+                          <button
+                            key={item.idx}
+                            onClick={() => {
+                              console.log('Switched safety config step to code:', item.idx);
+                              setActiveSafetyTab(item.idx);
+                            }}
+                            className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 select-none flex flex-col justify-between min-h-[110px] cursor-pointer focus:outline-none relative z-40 ${
+                              isActive
+                                ? 'bg-[#12110e]/95 border-brand-gold/25 shadow-lg shadow-brand-gold/5 text-white'
+                                : 'bg-[#0b0c0d]/85 border-white/[0.04] hover:bg-[#0f1011]/95 hover:border-neutral-700/20 text-gray-400 hover:text-white'
+                            }`}
+                          >
+                            <div className="flex justify-between items-start w-full mb-1">
+                              <span className={`text-[9px] font-mono font-bold px-1.5 py-0.5 rounded-md ${
+                                isActive ? 'bg-brand-gold text-brand-dark' : 'bg-neutral-900 text-stone-400'
+                              }`}>
+                                {item.num}
+                              </span>
+                            </div>
+
+                            <div className="space-y-0.5">
+                              <h4 className={`text-xs md:text-[14px] font-black tracking-tight transition-colors ${
+                                isActive ? 'text-brand-gold' : 'text-stone-100'
+                              }`}>
+                                {language === 'CN' ? item.btnTitleCN : item.btnTitleEN}
+                              </h4>
+                              <p className="text-[11px] text-gray-300 line-clamp-2 leading-relaxed mt-1.5 font-normal">
+                                {language === 'CN' ? item.btnDescCN : item.btnDescEN}
+                              </p>
+                            </div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
                 </div>
               </div>
-
-              {/* Option 4: Pedals */}
-              <div className="space-y-1.5">
-                <label className="text-[9px] font-bold text-gray-400 uppercase tracking-widest block">{language === 'CN' ? '踏步层层板选用材质' : 'PEDAL AND TIMBER VENEER'}</label>
-                <div className="grid grid-cols-2 gap-2">
-                  {detailPedalsList.map((pd) => (
-                    <button
-                      key={pd.value}
-                      type="button"
-                      onClick={() => setDetailConfig({ ...detailConfig, pedals: pd.value })}
-                      className={`py-2 px-2.5 rounded-lg border text-left transition-all cursor-pointer ${
-                        detailConfig.pedals === pd.value
-                          ? 'border-brand-gold bg-brand-gold/5 text-brand-dark font-semibold'
-                          : 'border-gray-200 text-gray-500 hover:border-gray-300'
-                      }`}
-                    >
-                      <span className="text-[10px] block truncate">{language === 'CN' ? pd.name_cn : pd.name_en}</span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-            </div>
-
-            {/* Primary custom proposal button */}
-            <div className="pt-4 border-t border-gray-100 flex gap-4 items-center justify-between">
-              <div className="hidden sm:block">
-                <span className="text-[8px] text-gray-400 tracking-wider block font-mono">INTEGRATED PLANS</span>
-                <span className="text-[10px] text-brand-gold font-bold">{language === 'CN' ? '已对接配置方案规范导出' : 'Ready to export to Spec/PDF'}</span>
-              </div>
-              <button
-                onClick={() => onNavigate('configurator', { productType: detailConfig.productType, style: detailConfig.style, color: detailConfig.color, pedals: detailConfig.pedals })}
-                className="btn-gold px-8 py-3 rounded-full text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 cursor-pointer shadow-md min-w-[150px]"
-              >
-                <Sliders className="w-3.5 h-3.5 text-brand-dark" />
-                <span>{language === 'CN' ? '立即进入在线配置方案' : 'Launch Customizer'}</span>
-              </button>
-            </div>
-          </div>
-
+            );
+          })()}
         </div>
-      </section>
+      </div>
 
       {/* ── Section 7: Technical Specifications table (白色精细两列规格表) ── */}
       <section id="technical-parameters" className="scroll-mt-24 py-24 bg-white border-b border-gray-100">
