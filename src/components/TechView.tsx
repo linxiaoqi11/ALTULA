@@ -44,7 +44,7 @@ const smartEfficientFeatures = [
     titleEN: "Self-Correction System",
     descCN: "智能动态纠偏技术，实时监测轨道运行状态，自动修正左右偏差。即使长期高频使用，也能保持运行轨迹的精准一致，延长设备使用寿命。",
     descEN: "Smart dynamic alignment technology continuously monitors the track operating status and automatically corrects left and right deviations. Even under long-term high-frequency usage, it maintains high-precision trajectory consistency, extending equipment lifespan.",
-    image: "https://images.unsplash.com/photo-1485081669829-bacb8c7bb1d3?auto=format&fit=crop&w=600&q=80",
+    image: "https://img-reg-ab.imagency.cn/e/13cdbba98ab5389c3943bb33868f153d.jpg",
     iconName: "RefreshCw"
   },
   {
@@ -203,7 +203,7 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
             {/* Right Column: Immersive Image with Architectural Precision */}
             <div className="lg:col-span-7 relative rounded-[2rem] overflow-hidden shadow-luxury border border-stone-200/40 aspect-[16/10] bg-stone-100 group">
               <img 
-                src="https://img-reg-ab.imagency.cn/e/eba0d9454fb1aeaa74d4b3276669c01c.png"
+                src="https://img-reg-ab.imagency.cn/e/5431c65a2723060f74ade4532238287b.webp"
                 alt="ALTULA Spatial Origin Showcase" 
                 className="w-full h-full object-cover absolute inset-0 transition-transform duration-[4000ms] group-hover:scale-105"
                 referrerPolicy="no-referrer"
