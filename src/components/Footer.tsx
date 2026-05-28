@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Phone, MapPin, Printer } from 'lucide-react';
+import { Mail, Phone, MapPin, Printer, Facebook, Linkedin, Twitter, Instagram, Youtube, Music } from 'lucide-react';
 
 interface FooterProps {
   onNavigate: (page: string, params?: any) => void;
@@ -169,13 +169,63 @@ export default function Footer({ onNavigate, language }: FooterProps) {
             &copy; 2026 ALTULA Space Solutions. All Rights Reserved. {' '}
             {language === 'CN' ? '领先体育高端子品牌' : 'A Premium Brand of Avant Sports.'}
           </p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              {language === 'CN' ? '隐私条款' : 'Privacy Policy'}
-            </a>
-            <a href="#" className="hover:text-gray-300 transition-colors">
-              {language === 'CN' ? '知识产权保护法' : 'Terms of Use'}
-            </a>
+          <div className="flex flex-wrap items-center gap-6">
+            <div className="flex items-center gap-5">
+              <a
+                href="https://facebook.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-brand-gold transition-colors duration-300"
+                title="Facebook"
+              >
+                <Facebook className="w-4.5 h-4.5" />
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-brand-gold transition-colors duration-300"
+                title="LinkedIn"
+              >
+                <Linkedin className="w-4.5 h-4.5" />
+              </a>
+              <a
+                href="https://twitter.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-brand-gold transition-colors duration-300"
+                title="Twitter"
+              >
+                <Twitter className="w-4.5 h-4.5" />
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-brand-gold transition-colors duration-300"
+                title="Instagram"
+              >
+                <Instagram className="w-4.5 h-4.5" />
+              </a>
+              <a
+                href="https://youtube.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-brand-gold transition-colors duration-300"
+                title="YouTube"
+              >
+                <Youtube className="w-4.5 h-4.5" />
+              </a>
+              <a
+                href="https://tiktok.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-500 hover:text-brand-gold transition-colors duration-300"
+                title="TikTok"
+              >
+                <Music className="w-4.5 h-4.5" />
+              </a>
+            </div>
           </div>
         </div>
       </div>
