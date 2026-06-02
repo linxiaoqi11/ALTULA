@@ -14,7 +14,7 @@ interface Order {
   price: string;
   statusCN: string;
   statusEN: string;
-  statusCode: 'production' | 'delivery' | 'completed';
+  statusCode: 'pending_confirm' | 'pending_contract' | 'pending_deposit' | 'production' | 'mid_payment' | 'delivery' | 'installing' | 'final_payment' | 'completed' | 'warranty';
   progressCN: string;
   progressEN: string;
   specCN: string;
@@ -23,12 +23,110 @@ interface Order {
   seats: number;
 }
 
+// Global orders array adhering strictly to user requirements and high-end aesthetics
+const ordersData: Order[] = [
+  {
+    id: 'ALT-NO: ALT-Concepto-825712',
+    productCN: 'ALTULA-Concepto级高伸缩活动看台组 - 5m / 6排',
+    productEN: 'ALTULA-Concepto Grade Smart Telescopic Seating System - 5m / 6 Rows',
+    date: '2026/5/29',
+    price: '¥ 116,340',
+    statusCN: '待确认',
+    statusEN: 'Pending Confirmation',
+    statusCode: 'pending_confirm',
+    progressCN: '已提交，等待客服确认',
+    progressEN: 'Submitted, pending customer service confirmation.',
+    specCN: '5m 面宽 / 6排 / Concepto 430*430*4mm 记忆海绵圆形坐垫 / 电驱变频承载系统 / 家具级饰面材质选择',
+    specEN: '5m Width / 6 Rows / Concepto 430*430*4mm Memory Foam Circular Cushions / Motorised Frequency-Regulated Seating Decks / Premium Materials Custom Accent Panels',
+    rows: 6,
+    seats: 36
+  },
+  {
+    id: 'ALT-1026-085',
+    productCN: '维格 Wellgo 智能活动看台',
+    productEN: 'Wellgo Smart Retractable Seating (Dual-Track VFD)',
+    date: '2026-04-12',
+    price: '¥ 428,000',
+    statusCN: '生产中',
+    statusEN: 'In Production',
+    statusCode: 'production',
+    progressCN: '钢架构模块化焊接完毕，正在进行微阻变频轨迹校准检测',
+    progressEN: 'Steel structure modular welding completed. VFD trajectory calibration in progress.',
+    specCN: '12排 / 860座 / 羊毛卡米拉温米白防静电饰面 / 双层钢化夹胶防撞玻璃 / 电动遥控一键收展',
+    specEN: '12 Rows / 860 Seats / Wool Camilla Warm Rice White Antistatic / Double Laminated Impact Glass / One-Button Automatic Fold',
+    rows: 12,
+    seats: 860
+  },
+  {
+    id: 'ALT-1026-042',
+    productCN: 'concepto 弧形艺术活动看台',
+    productEN: 'concepto Curved Artistic Retractable Seating (Active Obstacle Avoidance)',
+    date: '2026-03-05',
+    price: '¥ 298,000',
+    statusCN: '运输中',
+    statusEN: 'In Transit',
+    statusCode: 'delivery',
+    progressCN: '专业物流班车已出发，预计近期运抵剧院安装现场，工程团队跟进中',
+    progressEN: 'Professional logistics fleet dispatched. Expected arrival at theater site soon.',
+    specCN: '8排 / 540座 / 弧形豪华双层软皮包覆座椅 / 3D 激光雷达主动防撞感应 / 自平衡精准消噪传动',
+    specEN: '8 Rows / 540 Seats / Curved Luxury Double Soft-Leather Enveloping Seating / 3D LiDAR Collision Avoidance / Self-Balanced Ultra-Silent Drive',
+    rows: 8,
+    seats: 540
+  },
+  {
+    id: 'ALT-1025-119',
+    productCN: 'ALTULA 学术演讲大厅特制看台',
+    productEN: 'ALTULA Academic Auditorium Special Seating (High-Rise Cantilever)',
+    date: '2025-12-20',
+    price: '¥ 780,000',
+    statusCN: '已交付',
+    statusEN: 'Delivered',
+    statusCode: 'completed',
+    progressCN: '看台结构力学承重通过甲级工程院认证，主被动安全检测达标，设备已移交运营部使用',
+    progressEN: 'Structural load-bearing certified by Grade-A engineering bureau. Active/passive safety completed.',
+    specCN: '18排 / 1320座 / 自平衡折叠骨架结构 / 消音液压提升辅助 / 静音防滑拉丝合金铺板',
+    specEN: '18 Rows / 1320 Seats / Self-Balancing Folding Steel Frame / Hydraulic Dampening Lift Assist / Acoustic Non-slip Aluminum Decks',
+    rows: 18,
+    seats: 1320
+  }
+];
+
+// Contract Monitoring Steps Definitions
+const contractSteps = [
+  { num: 1, textCN: '待确认', textEN: 'To Confirm', code: 'pending_confirm' },
+  { num: 2, textCN: '待签合同', textEN: 'Sign Contract', code: 'pending_contract' },
+  { num: 3, textCN: '待付定金', textEN: 'Deposit', code: 'pending_deposit' },
+  { num: 4, textCN: '生产中', textEN: 'In Production', code: 'production' },
+  { num: 5, textCN: '待付中期款', textEN: 'Mid Payment', code: 'mid_payment' },
+  { num: 6, textCN: '配送中', textEN: 'In Transit', code: 'delivery' },
+  { num: 7, textCN: '待安装', textEN: 'Installing', code: 'installing' },
+  { num: 8, textCN: '待付尾款', textEN: 'Final Payment', code: 'final_payment' },
+  { num: 9, textCN: '已完成', textEN: 'Completed', code: 'completed' },
+  { num: 10, textCN: '质保中', textEN: 'Warranty', code: 'warranty' }
+];
+
+const getActiveStepNum = (statusCode: string) => {
+  switch (statusCode) {
+    case 'pending_confirm': return 1;
+    case 'pending_contract': return 2;
+    case 'pending_deposit': return 3;
+    case 'production': return 4;
+    case 'mid_payment': return 5;
+    case 'delivery': return 6;
+    case 'installing': return 7;
+    case 'final_payment': return 8;
+    case 'completed': return 9;
+    case 'warranty': return 10;
+    default: return 1;
+  }
+};
+
 export default function OrdersView({ onNavigate, language }: OrdersViewProps) {
   const [searchQuery, setSearchQuery] = useState('');
-  const [statusFilter, setStatusFilter] = useState<'all' | 'production' | 'delivery' | 'completed'>('all');
-  const [selectedOrder, setSelectedOrder] = useState<Order | null>(null);
+  const [statusFilter, setStatusFilter] = useState<string>('all');
+  const [selectedOrder, setSelectedOrder] = useState<Order | null>(ordersData[0]);
 
-  // Simulated Login State - stored locally to feel high fidelity
+  // Simulated Login State
   const [isLoggedIn, setIsLoggedIn] = useState(() => {
     return localStorage.getItem('altula_is_logged_in') === 'true';
   });
@@ -39,63 +137,27 @@ export default function OrdersView({ onNavigate, language }: OrdersViewProps) {
   const [loginError, setLoginError] = useState('');
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
-  // Rich mock orders for ALTULA retractable stands and seating
-  const ordersData: Order[] = [
-    {
-      id: 'ALT-1026-085',
-      productCN: '维格 Wellgo 智能活动看台 (微阻双轨变频)',
-      productEN: 'Wellgo Smart Retractable Seating (Dual-Track VFD)',
-      date: '2026-04-12',
-      price: '¥ 428,000',
-      statusCN: '生产中',
-      statusEN: 'In Production',
-      statusCode: 'production',
-      progressCN: '钢架构模块化焊接完毕，正在进行微阻变频轨迹校准检测',
-      progressEN: 'Steel structure modular welding completed. VFD trajectory calibration in progress.',
-      specCN: '12排 / 860座 / 羊毛卡米拉温米白防静电饰面 / 双层钢化夹胶防撞玻璃 / 电动遥控一键收展',
-      specEN: '12 Rows / 860 Seats / Wool Camilla Warm Rice White Antistatic / Double Laminated Impact Glass / One-Button Automatic Fold',
-      rows: 12,
-      seats: 860
-    },
-    {
-      id: 'ALT-1026-042',
-      productCN: 'concepto 弧形艺术活动看台 (智能主动避障款)',
-      productEN: 'concepto Curved Artistic Retractable Seating (Active Obstacle Avoidance)',
-      date: '2026-03-05',
-      price: '¥ 298,000',
-      statusCN: '运输中',
-      statusEN: 'In Transit',
-      statusCode: 'delivery',
-      progressCN: '专业物流班车已出发，预计 6 月 5 日运抵剧院安装现场，工程团队跟进中',
-      progressEN: 'Professional logistics fleet dispatched. Expected arrival at theater site on June 5.',
-      specCN: '8排 / 540座 / 弧形豪华双层软皮包覆座椅 / 3D 激光雷达主动防撞感应 / 自平衡精准消噪传动',
-      specEN: '8 Rows / 540 Seats / Curved Luxury Double Soft-Leather Enveloping Seating / 3D LiDAR Collision Avoidance / Self-Balanced Ultra-Silent Drive',
-      rows: 8,
-      seats: 540
-    },
-    {
-      id: 'ALT-1025-119',
-      productCN: 'ALTULA 学术演讲大厅特制看台 (超高层悬挑型)',
-      productEN: 'ALTULA Academic Auditorium Special Seating (High-Rise Cantilever)',
-      date: '2025-12-20',
-      price: '¥ 780,000',
-      statusCN: '已交付',
-      statusEN: 'Delivered',
-      statusCode: 'completed',
-      progressCN: '看台结构力学承重通过甲级工程院认证，主被动安全检测达标，设备已移交运营部使用',
-      progressEN: 'Structural load-bearing certified by Grade-A engineering bureau. Active/passive safety completed.',
-      specCN: '18排 / 1320座 / 自平衡折叠骨架结构 / 消音液压提升辅助 / 静音防滑拉丝合金铺板',
-      specEN: '18 Rows / 1320 Seats / Self-Balancing Folding Steel Frame / Hydraulic Dampening Lift Assist / Acoustic Non-slip Aluminum Decks',
-      rows: 18,
-      seats: 1320
-    }
-  ];
-
   // Filtered orders
   const filteredOrders = ordersData.filter(order => {
-    const matchesSearch = (language === 'CN' ? order.productCN : order.productEN).toLowerCase().includes(searchQuery.toLowerCase()) || 
-                          order.id.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || order.statusCode === statusFilter;
+    const productNameMatch = (language === 'CN' ? order.productCN : order.productEN).toLowerCase().includes(searchQuery.toLowerCase());
+    const idMatch = order.id.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = productNameMatch || idMatch;
+
+    let matchesStatus = false;
+    if (statusFilter === 'all') {
+      matchesStatus = true;
+    } else if (statusFilter === 'pending_confirm') {
+      matchesStatus = order.statusCode === 'pending_confirm';
+    } else if (statusFilter === 'production') {
+      matchesStatus = order.statusCode === 'production';
+    } else if (statusFilter === 'delivery') {
+      matchesStatus = order.statusCode === 'delivery';
+    } else if (statusFilter === 'completed') {
+      matchesStatus = order.statusCode === 'completed';
+    } else {
+      matchesStatus = order.statusCode === statusFilter;
+    }
+
     return matchesSearch && matchesStatus;
   });
 
@@ -156,9 +218,9 @@ export default function OrdersView({ onNavigate, language }: OrdersViewProps) {
           {/* Left Column (lg:col-span-8): Order Inquiry List */}
           <div className="lg:col-span-8 space-y-6">
             
-            {/* Search and Filters Controls Block */}
+            {/* Search and Filters Controls Block (Dropdown replaces high-density buttons) */}
             <div className="bg-white p-5 rounded-2xl border border-gray-100 shadow-luxury flex flex-col md:flex-row gap-4 justify-between items-center">
-              <div className="relative w-full md:w-1/2">
+              <div className="relative w-full md:w-3/5">
                 <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400">
                   <Search className="w-4 h-4" />
                 </span>
@@ -171,48 +233,20 @@ export default function OrdersView({ onNavigate, language }: OrdersViewProps) {
                 />
               </div>
               
-              {/* Category Filters */}
-              <div className="flex gap-2 w-full md:w-auto overflow-x-auto hide-scrollbar shrink-0">
-                <button
-                  onClick={() => setStatusFilter('all')}
-                  className={`px-3.5 py-2 rounded-lg text-xs font-bold leading-none transition-all cursor-pointer ${
-                    statusFilter === 'all'
-                      ? 'bg-brand-dark text-white shadow-md'
-                      : 'bg-gray-100 text-gray-500 hover:bg-gray-200'
-                  }`}
+              {/* Single Select dropdown list */}
+              <div className="relative w-full md:w-2/5 shrink-0">
+                <select
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="w-full bg-gray-50 border border-gray-200 focus:border-brand-gold focus:outline-none focus:bg-white rounded-lg pl-3.5 pr-10 py-2.5 text-xs font-bold text-gray-700 appearance-none cursor-pointer"
+                  style={{ backgroundImage: `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23C5A880' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'></polyline></svg>")`, backgroundRepeat: 'no-repeat', backgroundPosition: 'right 12px center', backgroundSize: '16px' }}
                 >
-                  {language === 'CN' ? '全部订单' : 'All'}
-                </button>
-                <button
-                  onClick={() => setStatusFilter('production')}
-                  className={`px-3.5 py-2 rounded-lg text-xs font-bold leading-none transition-all cursor-pointer ${
-                    statusFilter === 'production'
-                      ? 'bg-amber-500 text-white shadow-md'
-                      : 'bg-amber-50 text-amber-700 hover:bg-amber-100'
-                  }`}
-                >
-                  {language === 'CN' ? '生产中' : 'Production'}
-                </button>
-                <button
-                  onClick={() => setStatusFilter('delivery')}
-                  className={`px-3.5 py-2 rounded-lg text-xs font-bold leading-none transition-all cursor-pointer ${
-                    statusFilter === 'delivery'
-                      ? 'bg-blue-600 text-white shadow-md'
-                      : 'bg-blue-50 text-blue-700 hover:bg-blue-100'
-                  }`}
-                >
-                  {language === 'CN' ? '运输中' : 'In Transit'}
-                </button>
-                <button
-                  onClick={() => setStatusFilter('completed')}
-                  className={`px-3.5 py-2 rounded-lg text-xs font-bold leading-none transition-all cursor-pointer ${
-                    statusFilter === 'completed'
-                      ? 'bg-emerald-600 text-white shadow-md'
-                      : 'bg-emerald-50 text-emerald-700 hover:bg-emerald-100'
-                  }`}
-                >
-                  {language === 'CN' ? '已交付' : 'Delivered'}
-                </button>
+                  <option value="all">{language === 'CN' ? '全部订单状态' : 'All Statuses'}</option>
+                  <option value="pending_confirm">{language === 'CN' ? '待确认' : 'Pending Confirmation'}</option>
+                  <option value="production">{language === 'CN' ? '生产中' : 'In Production'}</option>
+                  <option value="delivery">{language === 'CN' ? '运输中' : 'In Transit'}</option>
+                  <option value="completed">{language === 'CN' ? '已交付' : 'Delivered'}</option>
+                </select>
               </div>
             </div>
 
@@ -226,279 +260,224 @@ export default function OrdersView({ onNavigate, language }: OrdersViewProps) {
                   </p>
                 </div>
               ) : (
-                filteredOrders.map((order) => (
-                  <div
-                    key={order.id}
-                    onClick={() => setSelectedOrder(selectedOrder?.id === order.id ? null : order)}
-                    className={`bg-white rounded-2xl border transition-all duration-300 shadow-luxury overflow-hidden cursor-pointer group ${
-                      selectedOrder?.id === order.id
-                        ? 'border-brand-gold bg-stone-50/20 shadow-xl'
-                        : 'border-slate-100 hover:border-gray-300 hover:-translate-y-0.5'
-                    }`}
-                  >
-                    {/* Collapsed view header */}
-                    <div className="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                      <div className="space-y-2">
-                        <div className="flex items-center gap-3">
-                          <span className="font-mono text-sm font-bold text-brand-dark px-2.5 py-1 rounded bg-brand-light border border-gray-200">
-                            {order.id}
-                          </span>
-                          <span className={`inline-flex items-center gap-1 text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full ${
-                            order.statusCode === 'production'
-                              ? 'bg-amber-100 text-amber-800'
-                              : order.statusCode === 'delivery'
-                              ? 'bg-blue-100 text-blue-800'
-                              : 'bg-emerald-100 text-emerald-800'
-                          }`}>
-                            {language === 'CN' ? order.statusCN : order.statusEN}
-                          </span>
-                        </div>
-                        <h2 className="text-lg font-black text-brand-dark tracking-tight leading-snug group-hover:text-brand-gold transition-colors">
-                          {language === 'CN' ? order.productCN : order.productEN}
-                        </h2>
-                        <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-brand-gray font-medium">
-                          <span className="flex items-center gap-1">
-                            <Calendar className="w-3.5 h-3.5" />
-                            {language === 'CN' ? '下单日期：' : 'Ordered: '}{order.date}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <Briefcase className="w-3.5 h-3.5" />
-                            {order.rows}{language === 'CN' ? '排' : ' Rows'} / {order.seats}{language === 'CN' ? '座' : ' Seats'}
-                          </span>
-                        </div>
-                      </div>
-                      
-                      <div className="flex flex-row md:flex-col justify-between md:items-end border-t border-gray-50 md:border-0 pt-3 md:pt-0 shrink-0">
-                        <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">
-                          {language === 'CN' ? '协议总价' : 'Project Cost'}
-                        </span>
-                        <span className="text-xl font-mono font-black text-brand-dark">
-                          {order.price}
-                        </span>
-                        <span className="text-[10px] font-bold text-brand-gold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 mt-1 hidden md:flex">
-                          {selectedOrder?.id === order.id 
-                            ? (language === 'CN' ? '折叠详情' : 'Hide Details') 
-                            : (language === 'CN' ? '展开详情' : 'Details')
-                          }
-                          <ArrowRight className={`w-3 h-3 transition-transform ${selectedOrder?.id === order.id ? 'rotate-90' : ''}`} />
-                        </span>
-                      </div>
-                    </div>
-
-                    {/* Expandable Section */}
-                    {selectedOrder?.id === order.id && (
-                      <div className="bg-brand-light/70 border-t border-gray-100 p-6 md:p-8 space-y-6 animate-fade-in">
-                        
-                        {/* Real-time Engineering Progress Tracker */}
-                        <div>
-                          <h4 className="text-xs font-bold text-brand-dark uppercase tracking-widest mb-4 flex items-center gap-1.5 border-b border-gray-200/50 pb-2">
-                            <Package className="w-4 h-4 text-brand-gold" />
-                            {language === 'CN' ? '制造及交付实时进度日志' : 'Live Production Progress Log'}
-                          </h4>
+                filteredOrders.map((order) => {
+                  const isExpanded = selectedOrder?.id === order.id;
+                  
+                  return (
+                    <div
+                      key={order.id}
+                      onClick={() => setSelectedOrder(isExpanded ? null : order)}
+                      className={`bg-white rounded-2xl border transition-all duration-300 shadow-luxury overflow-hidden cursor-pointer group ${
+                        isExpanded
+                          ? 'border-brand-gold bg-stone-50/20 shadow-xl'
+                          : 'border-slate-100 hover:border-gray-300 hover:-translate-y-0.5'
+                      }`}
+                    >
+                      {/* Collapsed view header */}
+                      <div className="p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-3">
+                            <span className="font-mono text-xs font-bold text-stone-800 px-3 py-1 rounded bg-[#F8F6F1] border border-gray-200">
+                              {order.id}
+                            </span>
+                            <span className={`inline-flex items-center gap-1 text-[10px] uppercase font-bold tracking-widest px-2.5 py-1 rounded-full ${
+                              order.statusCode === 'pending_confirm'
+                                ? 'bg-[#EADECC]/80 text-[#7A6448]'
+                                : order.statusCode === 'production'
+                                ? 'bg-amber-100 text-amber-800'
+                                : order.statusCode === 'delivery'
+                                ? 'bg-blue-100 text-blue-800'
+                                : 'bg-emerald-100 text-emerald-800'
+                            }`}>
+                              {language === 'CN' ? order.statusCN : order.statusEN}
+                            </span>
+                          </div>
                           
-                          {/* Progress Tracker Steps Component */}
-                          <div className="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-2.5 before:top-1.5 before:bottom-1.5 before:w-[2px] before:bg-gray-200">
+                          <h2 className="text-lg md:text-xl font-black text-brand-dark tracking-tight leading-snug group-hover:text-brand-gold transition-colors">
+                            {language === 'CN' ? order.productCN : order.productEN}
+                          </h2>
+                          
+                          <div className="flex flex-wrap items-center gap-x-5 gap-y-1 text-xs text-brand-gray font-medium">
+                            <span className="flex items-center gap-1">
+                              <Calendar className="w-3.5 h-3.5 text-gray-400" />
+                              {language === 'CN' ? '创建日期： ' : 'Created: '}{order.date}
+                            </span>
+                            <span className="flex items-center gap-1">
+                              <Briefcase className="w-3.5 h-3.5 text-gray-400" />
+                              {order.rows}{language === 'CN' ? '排' : ' Rows'} / {order.seats}{language === 'CN' ? '座' : ' Seats'}
+                            </span>
+                          </div>
+                        </div>
+                        
+                        <div className="flex flex-row md:flex-col justify-between md:items-end border-t border-gray-100 md:border-0 pt-3 md:pt-0 shrink-0">
+                          <div className="md:text-right">
+                            <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">
+                              {language === 'CN' ? '意向金' : 'Deposit'}
+                            </span>
+                            <span className="text-xl font-mono font-black text-brand-dark">
+                              {order.price}
+                            </span>
+                          </div>
+                          <span className="text-[10px] font-bold text-brand-gold group-hover:translate-x-1 transition-transform inline-flex items-center gap-1 mt-1 hidden md:flex">
+                            {isExpanded 
+                              ? (language === 'CN' ? '折叠详情' : 'Hide Details') 
+                              : (language === 'CN' ? '展开详情' : 'Details')
+                            }
+                            <ArrowRight className={`w-3 h-3 transition-transform ${isExpanded ? 'rotate-90' : ''}`} />
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Expandable Section */}
+                      {isExpanded && (
+                        <div className="bg-[#FAF9F5]/40 border-t border-gray-100 p-6 md:p-8 space-y-6 animate-fade-in" onClick={(e) => e.stopPropagation()}>
+                          
+                          {/* Horizontal 10-node Progress Monitor matching Screenshot 1 exactly */}
+                          <div className="py-4 border-b border-gray-200/50">
+                            <span className="text-brand-gold text-[11px] font-mono tracking-[0.2em] uppercase font-bold mb-4 block">
+                              {language === 'CN' ? '合同执行全维度十节点监察线' : '10-NODE CONTRACT MONITORING WATCHLINE'}
+                            </span>
                             
-                            {/* Current Step */}
-                            <div className="relative">
-                              <span className="absolute -left-6 top-1 w-[12px] h-[12px] rounded-full border-4 border-brand-gold bg-white ring-4 ring-brand-gold/15"></span>
-                              <div className="pl-2">
-                                <h5 className="font-bold text-xs text-brand-dark flex items-center gap-2">
-                                  {language === 'CN' ? '实时环节：' : 'Live Node: '}
-                                  <span className="text-brand-gold">{language === 'CN' ? order.statusCN : order.statusEN}</span>
-                                </h5>
-                                <p className="text-xs text-gray-500 font-medium leading-relaxed mt-1">
-                                  {language === 'CN' ? order.progressCN : order.progressEN}
-                                </p>
+                            <div className="flex items-center justify-between gap-1 overflow-x-auto pb-4 pt-2 -mx-2 px-2 scrollbar-thin scrollbar-thumb-gray-200">
+                              {contractSteps.map((step, idx) => {
+                                const isActive = getActiveStepNum(order.statusCode) === step.num;
+                                const isCompleted = getActiveStepNum(order.statusCode) > step.num;
+                                
+                                return (
+                                  <React.Fragment key={step.num}>
+                                    <div className="flex flex-col items-center text-center min-w-[75px] shrink-0 snap-center">
+                                      {/* Circle representing the dynamic state */}
+                                      <div className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 text-sm font-bold shadow-sm ${
+                                        isActive 
+                                          ? 'bg-[#C5A880] text-stone-900 border-2 border-[#B69871] ring-4 ring-[#C5A880]/20'
+                                          : isCompleted
+                                          ? 'bg-emerald-50 text-emerald-600 border-2 border-emerald-200'
+                                          : 'bg-gray-50 text-gray-400 border border-gray-200'
+                                      }`}>
+                                        {step.num}
+                                      </div>
+                                      
+                                      {/* Node status name */}
+                                      <span className={`text-[11px] mt-2 font-semibold whitespace-nowrap transition-colors duration-300 ${
+                                        isActive 
+                                          ? 'text-[#7A6448] font-bold'
+                                          : isCompleted
+                                          ? 'text-emerald-700'
+                                          : 'text-gray-400'
+                                      }`}>
+                                        {language === 'CN' ? step.textCN : step.textEN}
+                                      </span>
+                                    </div>
+                                    
+                                    {/* Connectivity angle divider symbol */}
+                                    {idx < contractSteps.length - 1 && (
+                                      <span className="text-gray-300 font-light text-xs mx-1 select-none shrink-0">
+                                        &gt;
+                                      </span>
+                                    )}
+                                  </React.Fragment>
+                                );
+                              })}
+                            </div>
+                          </div>
+
+                          {/* Dynamic latest status description callout banner */}
+                          <div className="bg-[#FAF7F2] rounded-xl p-5 border border-[#F0E6D2]/60">
+                            <div className="flex items-center gap-2 text-xs md:text-sm text-[#7A6448]">
+                              <span className="font-bold">{language === 'CN' ? '最新状态： ' : 'Latest Status: '}</span>
+                              <span>
+                                {order.statusCode === 'pending_confirm'
+                                  ? (language === 'CN' ? '已提交，等待客服确认' : 'Submitted, pending customer service confirmation')
+                                  : (language === 'CN' ? order.progressCN : order.progressEN)
+                                }
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* Historical Engineering logs */}
+                          <div>
+                            <h4 className="text-xs font-bold text-brand-dark uppercase tracking-widest mb-4 flex items-center gap-1.5 border-b border-gray-200/50 pb-2">
+                              <Package className="w-4 h-4 text-brand-gold" />
+                              {language === 'CN' ? '制造及交付实时进度日志' : 'Live Production Progress Log'}
+                            </h4>
+                            
+                            <div className="relative pl-6 space-y-6 before:content-[''] before:absolute before:left-2.5 before:top-1.5 before:bottom-1.5 before:w-[2px] before:bg-gray-200">
+                              
+                              {/* Current Step active details */}
+                              <div className="relative">
+                                <span className="absolute -left-6 top-1 w-[12px] h-[12px] rounded-full border-4 border-[#C5A880] bg-white ring-4 ring-[#C5A880]/15"></span>
+                                <div className="pl-2">
+                                  <h5 className="font-bold text-xs text-[#7A6448] flex items-center gap-2">
+                                    {language === 'CN' ? '实时环节：' : 'Live Node: '}
+                                    <span>{language === 'CN' ? order.statusCN : order.statusEN}</span>
+                                  </h5>
+                                  <p className="text-xs text-gray-500 font-medium leading-relaxed mt-1">
+                                    {language === 'CN' ? order.progressCN : order.progressEN}
+                                  </p>
+                                </div>
+                              </div>
+
+                              {/* Historic backup log */}
+                              <div className="relative opacity-60">
+                                <span className="absolute -left-5 top-1.5 w-2 h-2 rounded-full bg-brand-gray"></span>
+                                <div className="pl-2">
+                                  <h5 className="font-bold text-[11px] text-brand-dark">
+                                    {language === 'CN' ? '看台系统数字化预选模数审核通过' : 'Bleacher module structural pre-selection review passed'}
+                                  </h5>
+                                  <span className="text-[10px] text-gray-400 font-medium font-mono">2026-05-29 11:30</span>
+                                </div>
                               </div>
                             </div>
+                          </div>
 
-                            {/* Standard Sub-step logs */}
-                            {order.statusCode === 'production' && (
-                              <>
-                                <div className="relative opacity-60">
-                                  <span className="absolute -left-5 top-1.5 w-2 h-2 rounded-full bg-brand-gray"></span>
-                                  <div className="pl-2">
-                                    <h5 className="font-bold text-[11px] text-brand-dark">
-                                      {language === 'CN' ? '看台骨架精密焊接通过核验' : 'Platform structure precision welding and testing passed'}
-                                    </h5>
-                                    <span className="text-[10px] text-gray-400 font-medium font-mono">2026-05-18 10:24</span>
-                                  </div>
-                                </div>
-                                <div className="relative opacity-60">
-                                  <span className="absolute -left-5 top-1.5 w-2 h-2 rounded-full bg-brand-gray"></span>
-                                  <div className="pl-2">
-                                    <h5 className="font-bold text-[11px] text-brand-dark">
-                                      {language === 'CN' ? '首批加高加厚钢架构进入预装线' : 'Stage-1 steel framework pre-assembly verification'}
-                                    </h5>
-                                    <span className="text-[10px] text-gray-400 font-medium font-mono">2026-05-10 14:15</span>
-                                  </div>
-                                </div>
-                              </>
-                            )}
+                          {/* Engineering Technical Specifications details */}
+                          <div className="pt-4 border-t border-gray-200/50">
+                            <h4 className="text-xs font-bold text-brand-dark uppercase tracking-widest mb-3 flex items-center gap-1.5">
+                              <FileText className="w-4 h-4 text-brand-gold" />
+                              {language === 'CN' ? '设计与定制工艺参数档案' : 'Custom Crafting Technical Specs'}
+                            </h4>
+                            <div className="bg-white p-4.5 rounded-xl border border-gray-100/80">
+                              <p className="text-xs text-gray-600 font-medium leading-relaxed">
+                                {language === 'CN' ? order.specCN : order.specEN}
+                              </p>
+                            </div>
+                          </div>
 
-                            {order.statusCode === 'delivery' && (
-                              <>
-                                <div className="relative opacity-60">
-                                  <span className="absolute -left-5 top-1.5 w-2 h-2 rounded-full bg-brand-gray"></span>
-                                  <div className="pl-2">
-                                    <h5 className="font-bold text-[11px] text-brand-dark">
-                                      {language === 'CN' ? '看台完成抗震与 500kg/㎡ 载荷破坏性物理实验' : 'Antidisplacement anti-vibration & 500kg/m² structural load stress pass'}
-                                    </h5>
-                                    <span className="text-[10px] text-gray-400 font-medium font-mono">2026-04-22 16:30</span>
-                                  </div>
-                                </div>
-                                <div className="relative opacity-60">
-                                  <span className="absolute -left-5 top-1.5 w-2 h-2 rounded-full bg-brand-gray"></span>
-                                  <div className="pl-2">
-                                    <h5 className="font-bold text-[11px] text-brand-dark">
-                                      {language === 'CN' ? '定制看台钢结构首选构件下线' : 'Seating materials and primary custom-extruded components roll out'}
-                                    </h5>
-                                    <span className="text-[10px] text-gray-400 font-medium font-mono">2026-04-05 09:12</span>
-                                  </div>
-                                </div>
-                              </>
-                            )}
-
-                            {order.statusCode === 'completed' && (
-                              <>
-                                <div className="relative opacity-60">
-                                  <span className="absolute -left-5 top-1.5 w-2 h-2 rounded-full bg-emerald-500"></span>
-                                  <div className="pl-2">
-                                    <h5 className="font-bold text-[11px] text-emerald-800">
-                                      {language === 'CN' ? '项目经理签署正式交付及质保证书' : 'Official Project Manager handover and warranty signing'}
-                                    </h5>
-                                    <span className="text-[10px] text-gray-400 font-medium font-mono">2026-01-18 10:00</span>
-                                  </div>
-                                </div>
-                                <div className="relative opacity-60">
-                                  <span className="absolute -left-5 top-1.5 w-2 h-2 rounded-full bg-emerald-500"></span>
-                                  <div className="pl-2">
-                                    <h5 className="font-bold text-[11px] text-brand-dark">
-                                      {language === 'CN' ? '双轨变频动力与激光红外对齐测绘系统试运行完美' : 'Dual-motion laser indexing motor and alignment test run completed'}
-                                    </h5>
-                                    <span className="text-[10px] text-gray-400 font-medium font-mono">2026-01-15 15:45</span>
-                                  </div>
-                                </div>
-                              </>
-                            )}
+                          {/* Actions */}
+                          <div className="flex justify-end gap-3 pt-3">
+                            <button
+                              onClick={() => onNavigate('contact')}
+                              className="bg-white hover:bg-gray-50 text-brand-dark border border-gray-200 py-2 px-4 rounded-lg text-xs font-bold cursor-pointer transition-colors"
+                            >
+                              {language === 'CN' ? '联系专属项目经理' : 'Contact QA Manager'}
+                            </button>
                           </div>
                         </div>
-
-                        {/* Engineering Technical Specifications details */}
-                        <div className="pt-4 border-t border-gray-200/50">
-                          <h4 className="text-xs font-bold text-brand-dark uppercase tracking-widest mb-3 flex items-center gap-1.5">
-                            <FileText className="w-4 h-4 text-brand-gold" />
-                            {language === 'CN' ? '设计与定制工艺参数档案' : 'Custom Crafting Technical Specs'}
-                          </h4>
-                          <div className="bg-white p-4.5 rounded-xl border border-gray-100/80">
-                            <p className="text-xs text-gray-600 font-medium leading-relaxed">
-                              {language === 'CN' ? order.specCN : order.specEN}
-                            </p>
-                          </div>
-                        </div>
-
-                        {/* Order action button */}
-                        <div className="flex justify-end gap-3 pt-3">
-                          <button
-                            onClick={() => onNavigate('contact')}
-                            className="bg-white hover:bg-gray-50 text-brand-dark border border-gray-200 py-2 px-4 rounded-lg text-xs font-bold cursor-pointer transition-colors"
-                          >
-                            {language === 'CN' ? '联系专属项目经理' : 'Contact QA Manager'}
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                ))
+                      )}
+                    </div>
+                  );
+                })
               )}
             </div>
           </div>
 
-          {/* Right Column (lg:col-span-4): Login Info / Account Management Panel */}
+          {/* Right Column (lg:col-span-4): Personal Center Panel pruned to absolute basics per request */}
           <div className="lg:col-span-4">
             {isLoggedIn ? (
               
-              /* Logged In View - Enterprise User Portal */
+              /* Logged In View - Pruned Personal Center Portal */
               <div className="bg-white rounded-3xl border border-gray-100 p-8 shadow-luxury text-brand-dark space-y-6">
                 
-                {/* Profile Card Header */}
-                <div className="text-center pb-6 border-b border-gray-100 relative">
-                  <div className="w-20 h-20 rounded-full bg-brand-gold/10 text-brand-gold border border-brand-gold/20 flex items-center justify-center mx-auto mb-4 relative shadow-sm">
-                    <User className="w-10 h-10" />
-                    <span className="absolute bottom-1 right-1 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white"></span>
+                {/* Profile Card Header with only avatar background and Username */}
+                <div className="text-center pb-2 relative">
+                  <div className="w-24 h-24 rounded-full bg-brand-gold/10 text-[#C5A880] border border-brand-gold/20 flex items-center justify-center mx-auto mb-4 relative shadow-sm">
+                    <User className="w-12 h-12" />
+                    <span className="absolute bottom-1 right-2 w-4.5 h-4.5 rounded-full bg-emerald-500 border-2 border-white"></span>
                   </div>
                   
-                  <h3 className="text-lg font-black tracking-tight text-brand-dark">
+                  <h3 className="text-xl font-black tracking-tight text-brand-dark">
                     ALTULA_VIP
                   </h3>
-                  <div className="flex justify-center items-center gap-1.5 mt-1.5">
-                    <span className="bg-brand-dark text-brand-gold text-[9px] font-bold uppercase tracking-widest px-2.5 py-0.5 rounded-full inline-block">
-                      {language === 'CN' ? '核心合伙人' : 'CORE PARTNER'}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Account details registry */}
-                <div className="space-y-4">
-                  <div className="flex gap-3.5 items-start">
-                    <span className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center text-brand-gold shrink-0">
-                      <Building className="w-4 h-4" />
-                    </span>
-                    <div>
-                      <h5 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider leading-none mb-1">
-                        {language === 'CN' ? '企商名称' : 'Institution Office'}
-                      </h5>
-                      <p className="text-xs font-bold text-brand-dark">
-                        {language === 'CN' ? '北京国家大剧院改建筹备处' : 'National Grand Theater Reconstruction Office'}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3.5 items-start">
-                    <span className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center text-brand-gold shrink-0">
-                      <ShieldCheck className="w-4 h-4" />
-                    </span>
-                    <div>
-                      <h5 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider leading-none mb-1">
-                        {language === 'CN' ? '信誉评级' : 'Soverign Credit Rating'}
-                      </h5>
-                      <p className="text-xs font-bold text-brand-dark flex items-center gap-1">
-                        AA+ {language === 'CN' ? '(免收装配意向金)' : '(Security Free Credit)'}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex gap-3.5 items-start">
-                    <span className="w-8 h-8 rounded-lg bg-gray-50 border border-gray-100 flex items-center justify-center text-brand-gold shrink-0">
-                      <Phone className="w-4 h-4" />
-                    </span>
-                    <div>
-                      <h5 className="text-[10px] font-bold text-gray-400 uppercase tracking-wider leading-none mb-1">
-                        {language === 'CN' ? 'VIP 经理热线' : 'Assigned Senior Manager'}
-                      </h5>
-                      <p className="text-xs font-bold text-brand-dark">
-                        {language === 'CN' ? '185-8894-5064 (林经理)' : '+86 185-8894-5064 (Andy Lin)'}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Interactive statistical charts / summary info */}
-                <div className="p-4 rounded-2xl bg-brand-light border border-gray-100/80 space-y-3.5">
-                  <h4 className="text-[10px] font-bold text-brand-dark uppercase tracking-wider border-b border-gray-200/50 pb-1.5">
-                    {language === 'CN' ? '合作成果统计' : 'Joint Partnership Stats'}
-                  </h4>
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <span className="block text-[9px] text-gray-400 font-bold uppercase tracking-wider">{language === 'CN' ? '累计采购总值' : 'Accumulated Cost'}</span>
-                      <span className="text-base font-mono font-black text-brand-dark block mt-0.5">¥ 1,506 K</span>
-                    </div>
-                    <div>
-                      <span className="block text-[9px] text-gray-400 font-bold uppercase tracking-wider">{language === 'CN' ? '已排产座位' : 'Total Seating'}</span>
-                      <span className="text-base font-mono font-black text-brand-dark block mt-0.5">2,720 座</span>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Log Out Control */}
