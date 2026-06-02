@@ -6,12 +6,14 @@ import {
   Compass,
   ArrowLeft,
   ArrowRight,
-  Zap,
-  Minimize2,
-  RefreshCw,
-  Smartphone,
-  Database,
-  Lightbulb
+  Sparkles,
+  Heart,
+  Volume2,
+  Eye,
+  Wind,
+  Palette,
+  Layers,
+  Activity
 } from 'lucide-react';
 
 interface TechViewProps {
@@ -19,71 +21,73 @@ interface TechViewProps {
   language: 'CN' | 'EN';
 }
 
-const smartEfficientFeatures = [
+const aestheticsComfortFeatures = [
   {
     num: "01",
-    titleCN: "IOT 边缘计算中枢",
-    titleEN: "IoT Edge Computing Center",
-    descCN: "系统内置工业级边缘计算芯片，实现多点同步驱动与运行状态的实时调度。毫秒级响应速度，使每一次展开与收合都具备精确的一致性控制，无卡顿、无偏差。",
-    descEN: "Built-in industrial-grade edge computing chips enable multi-point synchronous driving and real-time scheduling of operational status. Millisecond-level response speed ensures that each deployment and retraction possesses precise, consistent control with zero lagging or deviations.",
-    image: "https://img-reg-ab.imagency.cn/e/5a54fe0465b40c88314cf2c1bffe68fc.jpg",
-    iconName: "Zap"
+    titleCN: "Concepto圆形坐垫",
+    titleEN: "Concepto Circular Cushion",
+    descCN: "430*430*4mm记忆海绵填充，均匀分摊体重，贴合身体曲线，久坐不塌陷",
+    descEN: "430*430*4mm high-density memory foam padding distributes body weight evenly, matches natural curves, and remains resilient without collapsing.",
+    image: "https://img-reg-ab.imagency.cn/e/12a8e9f16fde300a0ac15cd7ae7de2b8.webp",
+    iconName: "Sparkles"
   },
   {
     num: "02",
-    titleCN: "专利限位排锁 2.0",
-    titleEN: "Patented Row Limit Lock 2.0",
-    descCN: "独家专利行程限位与状态反馈机制，设备运行过程可被持续监测与自动修正。精准锁定每一排的位置，在保证安全边界的前提下，实现平稳高效的空间转换。",
-    descEN: "Our exclusive patented travel limit and state feedback mechanism allows continuous monitoring and automatic correction during equipment operations. Precisely lock the position of each row, achieving smooth, efficient spatial transitions while guaranteeing strict safety margins.",
-    image: "https://img-reg-ab.imagency.cn/e/5432a4646b0b7f13280259f9e7a72781.jpg",
-    iconName: "Minimize2"
+    titleCN: "Orden方形坐垫",
+    titleEN: "Orden Square Cushion",
+    descCN: "高密度冷泡海绵，回弹性优异，长期使用不变形，易清洁易维护",
+    descEN: "Premium cold-cured resilient foam offers outstanding elasticity, preventing deformation during long-term commercial use while being extremely easy to clean.",
+    image: "https://img-reg-ab.imagency.cn/e/123911daf02e9e85d0946f65e73db310.webp",
+    iconName: "Layers"
   },
   {
     num: "03",
-    titleCN: "自纠偏系统",
-    titleEN: "Self-Correction System",
-    descCN: "智能动态纠偏技术，实时监测轨道运行状态，自动修正左右偏差。即使长期高频使用，也能保持运行轨迹的精准一致，延长设备使用寿命。",
-    descEN: "Smart dynamic alignment technology continuously monitors the track operating status and automatically corrects left and right deviations. Even under long-term high-frequency usage, it maintains high-precision trajectory consistency, extending equipment lifespan.",
-    image: "https://img-reg-ab.imagency.cn/e/13cdbba98ab5389c3943bb33868f153d.jpg",
-    iconName: "RefreshCw"
+    titleCN: "103°黄金靠背倾角",
+    titleEN: "103° Golden Backrest Angle",
+    descCN: "自然贴合脊柱生理曲度，有效缓解腰部压力，2小时会议无疲劳感",
+    descEN: "Engineered to mimic natural spinal curvature, relieving lumbar load perfectly. Keeps participants active, focused and comfortable even during 2-hour long symposia.",
+    image: "https://img-reg-ab.imagency.cn/e/5a54fe0465b40c88314cf2c1bffe68fc.jpg",
+    iconName: "Compass"
   },
   {
     num: "04",
-    titleCN: "多元终端控制",
-    titleEN: "Multi-Terminal Control",
-    descCN: "支持手机、平板、中控屏、遥控器等多种终端控制方式。一键全控、分区控制、定时预约三种模式，灵活适配不同管理需求，操作简单便捷。",
-    descEN: "Supports multiple control terminals including smartphones, tablets, central consoles, and remote controllers. Features three main modes: master control, zonal control, and scheduled reservations, adapting flexibly to various management needs with straightforward operation.",
-    image: "https://img-reg-ab.imagency.cn/e/d7e3b21df042913844f8cc9e62c007f0.jpg",
-    iconName: "Smartphone"
+    titleCN: "多材质定制",
+    titleEN: "Sovereign Multi-Material Finishes",
+    descCN: "提供木纹、金属、布艺、皮革等多种材质选择，完美匹配任何空间风格",
+    descEN: "Personalize your layout with a luxurious variety of real wood veneers, brushed metals, durable acoustic fabrics, and micro-leathers to suit any interior theme.",
+    image: "https://img-reg-ab.imagency.cn/e/2ad933f78bf48d566f9e4dfde95ac73e.png",
+    iconName: "Palette"
   },
   {
     num: "05",
-    titleCN: "领先场馆运维数据云平台",
-    titleEN: "Venue Ops Data Cloud Platform",
-    descCN: "运行数据云端实时存储，自动生成使用报告与维护提醒。远程查看设备状态、故障预警、能耗统计，为空间运营管理提供数据支撑，提升整体运营效率。",
-    descEN: "Running data is securely stored in the cloud in real time, automatically generating usage reports and maintenance alerts. Remotely view device status, fault warnings, and energy statistics to provide solid data backing for space operations and enhance efficiency.",
-    image: "https://img-reg-ab.imagency.cn/e/9ebaa8c2e917e3c6cd750d2c432ac452.jpg",
-    iconName: "Database"
+    titleCN: "隐藏式螺丝设计",
+    titleEN: "Concealed Hardware Screws",
+    descCN: "所有外露部件无螺丝，视觉更整洁，同时避免磕碰伤害",
+    descEN: "A flush, screw-free exterior profile keeps the visual workspace immaculate while eliminating risk of grazing knees or snagging clothes underfoot.",
+    image: "https://img-reg-ab.imagency.cn/e/d7e3b21df042913844f8cc9e62c007f0.jpg",
+    iconName: "Eye"
   },
   {
     num: "06",
-    titleCN: "智能过道灯",
-    titleEN: "Smart Aisle Lights",
-    descCN: "人体感应智能照明系统，有人经过时自动点亮，无人时自动熄灭。与看台运行状态联动，展开时自动开启，收合时自动关闭，节能又贴心。",
-    descEN: "The smart motion-sensor lighting glows automatically when people pass by and dims down when vacant. Synced directly with the seating operation, it activates upon deployment and switches off when retracted, providing sweet and energy-saving care.",
-    image: "https://img-reg-ab.imagency.cn/e/2ad933f78bf48d566f9e4dfde95ac73e.png",
-    iconName: "Lightbulb"
+    titleCN: "圆角工艺处理",
+    titleEN: "Exquisite Rounded Chamfers",
+    descCN: "所有边角均采用圆弧过渡，触感顺滑，提升空间整体柔和度",
+    descEN: "By replacing heavy industrial edges with delicate rounded corners, the system delivers soft sensory touchpoints and enhances architectural harmony.",
+    image: "https://img-reg-ab.imagency.cn/e/9f41c71e27f68a5ed64a7dd5411341b7.jpg",
+    iconName: "Wind"
   }
 ];
 
 const renderIcon = (name: string, className: string) => {
   switch (name) {
-    case 'Zap': return <Zap className={className} />;
-    case 'Minimize2': return <Minimize2 className={className} />;
-    case 'RefreshCw': return <RefreshCw className={className} />;
-    case 'Smartphone': return <Smartphone className={className} />;
-    case 'Database': return <Database className={className} />;
-    case 'Lightbulb': return <Lightbulb className={className} />;
+    case 'Sparkles': return <Sparkles className={className} />;
+    case 'Heart': return <Heart className={className} />;
+    case 'Volume2': return <Volume2 className={className} />;
+    case 'Eye': return <Eye className={className} />;
+    case 'Wind': return <Wind className={className} />;
+    case 'Palette': return <Palette className={className} />;
+    case 'Compass': return <Compass className={className} />;
+    case 'Layers': return <Layers className={className} />;
     default: return <Cpu className={className} />;
   }
 };
@@ -138,7 +142,7 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
           <div className="absolute -bottom-48 right-1/4 w-[600px] h-[600px] bg-brand-gold/10 blur-[130px] rounded-full pointer-events-none"></div>
         </div>
 
-        <div className="absolute inset-0 z-0 opacity-40 mix-blend-screen bg-cover bg-center" style={{ backgroundImage: "url('https://img-reg-ab.imagency.cn/e/123911daf02e9e85d0946f65e73db310.webp')" }}>
+        <div className="absolute inset-0 z-0 opacity-40 mix-blend-screen bg-cover bg-center" style={{ backgroundImage: "url('https://img-reg-ab.imagency.cn/e/5431c65a2723060f74ade4532238287b.webp')" }}>
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A0B0C] via-transparent to-[#0A0B0C]"></div>
         </div>
 
@@ -147,23 +151,29 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
         <div className="relative z-10 max-w-5xl mx-auto text-center px-6">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-brand-gold text-[10px] uppercase tracking-widest font-mono font-bold mb-6 backdrop-blur-md">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-gold animate-ping"></span>
-            ALTULA {language === 'CN' ? '智能学设计科技' : 'SMART DESIGN TECH'}
+            ALTULA {language === 'CN' ? '美学与舒适' : 'AESTHETICS & COMFORT'}
           </div>
           
-          <h1 className="text-4xl md:text-7xl font-black text-white tracking-tight leading-none mb-6">
+          <h1 className="text-4xl md:text-7xl font-black text-white tracking-tight leading-none mb-4">
             {language === 'CN' ? (
               <span className="bg-gradient-to-r from-white via-white to-gray-400 bg-clip-text text-transparent">
-                特色技术
+                美学与舒适
               </span>
             ) : (
-              'Featured Technology'
+              'Aesthetics & Comfort'
             )}
           </h1>
           
-          <p className="text-gray-400 font-light text-base md:text-xl max-w-2xl mx-auto leading-relaxed">
+          <p className="text-brand-gold font-medium text-lg md:text-2xl max-w-2xl mx-auto leading-relaxed mb-6">
             {language === 'CN'
-              ? '以技术创新，重新定义活动看台的边界'
-              : 'Redefining the boundaries of telescopic seating through technological innovation'}
+              ? '以空间为原点，而非产品本身'
+              : 'Space as the Origin, Not the Product Itself'}
+          </p>
+
+          <p className="text-gray-400 font-light text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            {language === 'CN'
+              ? '让设施成为空间的一部分，而非被摆放进去的设备'
+              : 'Let facilities grow organically within the architectural context, rather than just being placed as equipment.'}
           </p>
         </div>
       </div>
@@ -216,28 +226,28 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
         </div>
       </div>
 
-      {/* ── SMART & EFFICIENT (智慧高效 section) ── */}
-      <div id="smart-efficient-section" className="max-w-7xl mx-auto px-6 md:px-12 mb-20 md:mb-24 reveal-up">
+      {/* ── AESTHETICS & COMFORT (美学与舒适 section) ── */}
+      <div id="aesthetics-comfort-section" className="max-w-7xl mx-auto px-6 md:px-12 mb-20 md:mb-24 reveal-up">
         {/* Section Header */}
         <div className="max-w-3xl mb-12 md:mb-16 text-left">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-brand-gold text-[10px] uppercase tracking-widest font-bold leading-none">
-              {language === 'CN' ? '智慧高效' : 'SMART & EFFICIENT'}
+              {language === 'CN' ? '触感与质感' : 'TEXTURE & SENSIBILITY'}
             </span>
           </div>
           <h2 className="text-3xl md:text-5xl font-black text-brand-dark tracking-tight leading-none mb-6">
-            {language === 'CN' ? '稳定有序，精准响应' : 'Stable & Orderly, Precise Response'}
+            {language === 'CN' ? '细节见真章，舒适藏于每一处' : 'Details Matter, Comfort is Hidden in Plain Sight'}
           </h2>
           <p className="text-stone-600 font-light text-sm md:text-base leading-relaxed">
             {language === 'CN' 
-              ? '基于电动驱动系统与分段控制技术，ALTULA 构建起稳定有序的运行逻辑。从芯片级控制到云端管理，每一个环节都经过精密调校，实现高效且可预期的空间切换。'
-              : 'Based on electric drive systems and segmented control technology, ALTULA constructs a stable and orderly operational logic. From chip-level control to cloud management, every component is precisely tuned to achieve high efficiency and predictable spatial transitions.'}
+              ? '从材质选择到工艺打磨，每一个细节都为更好的体验而生'
+              : 'From material selection to hand craftsmanship, every single detail is born for a superior sensory experience.'}
           </p>
         </div>
 
         {/* 6 Grid Bento-Style Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {smartEfficientFeatures.map((item) => (
+          {aestheticsComfortFeatures.map((item) => (
             <div 
               key={item.num}
               className="group bg-white rounded-3xl border border-stone-200/50 p-6 md:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-luxury hover:border-slate-300/80"
@@ -251,7 +261,6 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     referrerPolicy="no-referrer"
                   />
-                  {/* Subtle Gradient Overlay on Image */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none"></div>
                 </div>
 
@@ -285,7 +294,7 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
         </div>
       </div>
 
-      {/* ── SAFETY CONFIGURATION (Full screen horizontal section in Reference Layout) ── */}
+      {/* ── COMFORT DETAILS (Full screen horizontal section) ── */}
       <div id="safety-config-section" className="w-full bg-[#1E2022] border-y border-neutral-800/40 py-20 md:py-28 relative overflow-hidden text-white my-16">
         <div className="absolute inset-0 bg-[url('https://img-reg-ab.imagency.cn/e/12a8e9f16fde300a0ac15cd7ae7de2b8.webp')] bg-cover bg-center opacity-12 pointer-events-none"></div>
         <div className="absolute inset-0 bg-black/48 pointer-events-none"></div>
@@ -293,90 +302,86 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:3rem_3rem] opacity-15 pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12">
-          {/* Interactive reference layout: Left big image display, Right dynamic texts and 2x2 cards */}
           {(() => {
-            const safetyProtocols = [
+            const aestheticsProtocols = [
               {
                 idx: 0,
                 num: '01',
-                btnTitleCN: '自研安全数控芯片',
-                btnTitleEN: 'Intelligent Safety Chip',
-                btnDescCN: '安全主控芯片配置，异常数据0.1秒级极速响应。',
-                btnDescEN: 'Proprietary core chip executes quick stop logic.',
-                categoryCN: '智能智脑 | CORE BRAIN',
-                categoryEN: 'DIGITAL INTELLECTUAL | CORE BRAIN',
-                mainTitleCN: '智能主控芯片，从源头保障看台安全运转',
-                mainTitleEN: 'Intelligent Active Brain-Control Chip Core System',
-                detailDescCN: '自研云枢核心数控芯片为系统提供了最底层的数字主控防卫。实时监测并深度校核电机力矩、高压电流及机械运转角位移，一经检出异常负荷或非预置位冲力，将立即在0.1秒内触发紧急闭合停机指令，全域杜绝由于传统机电抖振、感应盲点带来的冲暴损伤。',
-                detailDescEN: 'Our digital brain coordinates micro-metric datasets directly from key sensory circuits. Integrates robust physical-shield filters to safeguard stable operation logic.',
-                image: 'https://img-reg-ab.imagency.cn/e/9f41c71e27f68a5ed64a7dd5411341b7.jpg'
+                btnTitleCN: '收合隐形设计',
+                btnTitleEN: 'Invisible Retraction',
+                btnDescCN: '完全收合后与墙面齐平，几乎不可见。',
+                btnDescEN: 'Completely flush with structural walls when fully retracted.',
+                categoryCN: '收合美学 / INTEGRATIVE MINIMALISM',
+                categoryEN: 'SPACE OPTIMIZATION | CONCEALED FORM',
+                mainTitleCN: '收合隐形设计，浑然一体的视觉纯净',
+                mainTitleEN: 'Completely Flush Architectural Integration When Retracted',
+                detailDescCN: '完全收合后与墙面齐平，几乎不可见。通过高静密折叠机制与高维参数模数对齐，消除视觉突兀度，使其在不使用时成为静谧的背景。',
+                detailDescEN: 'Once fully retracted, the entire bleacher matches structural walls seamlessly, hiding all hardware details to keep spaces clean and uncluttered.',
+                image: 'https://img-reg-ab.imagency.cn/e/5431c65a2723060f74ade4532238287b.webp'
               },
               {
                 idx: 1,
                 num: '02',
-                btnTitleCN: '航空铝超承载骨架',
-                btnTitleEN: 'Aerospace Structural Framework',
-                btnDescCN: '高张力重度加筋合金框架，单座承重≥150kg。',
-                btnDescEN: 'Lightweight high-rigidity aeron-metals distribution.',
-                categoryCN: '结构冗余 | MATERIAL INTEGRITY',
-                categoryEN: 'STRUCTURAL REDUNDANCY | STRENGTH PROFILE',
-                mainTitleCN: '精铸航天级核心受力排骨架，抗扰稳如泰山',
-                mainTitleEN: 'Military-Spec Aerospace Aluminum Profile Framework',
-                detailDescCN: '整体承重核心精选兼有高弹性模量、极轻质量的航空级抗腐蚀压延铝合金拼机。底部经机器人一体激光融焊打磨成形，内设双向纵梁十字交叉剪刀撑，单座抗剪预载可保证≥150kg；整机多向均匀传导动荷能量，安全稳定性极大超越特种复杂承载行业资质。',
-                detailDescEN: 'Forged from premier weight-bearing structural metals. Double cross-girder supports safely endure up to ≥150kg per single active tier, maintaining peak structural flexibility.',
-                image: 'https://img-reg-ab.imagency.cn/e/1f261656c79a3b5a014673e90e744f8e.jpg'
+                btnTitleCN: '模数化拼接',
+                btnTitleEN: 'Modular Connection',
+                btnDescCN: '可根据空间尺寸自由组合，无缝衔接。',
+                btnDescEN: 'Freely combinable layouts that snap seamlessly into place.',
+                categoryCN: '积木组合 / FLEXIBLE EXTENSION',
+                categoryEN: 'MODULAR COORDINATION | INTERACTION SPACE',
+                mainTitleCN: '可根据空间尺寸自由组合，随时无缝衔接',
+                mainTitleEN: 'Modular Configuration Connects Layout Boundaries Seamlessly',
+                detailDescCN: '可根据空间尺寸自由组合，无缝衔接。模数化组件经过标准化物理公差校准，可以在几分钟内调整看台段落以契合各式大型多功能场景。',
+                detailDescEN: 'Standardized components align under strict physical tolerance levels, enabling quick extensions and sections tailoring to fit active multipurpose venues.',
+                image: 'https://img-reg-ab.imagency.cn/e/f77ee005ec194f8323d0bbaa4d26852d.webp'
               },
               {
                 idx: 2,
                 num: '03',
-                btnTitleCN: '全封闭缝隙防坠落挡板',
-                btnTitleEN: 'Fall-Prevention Barrier',
-                btnDescCN: '平台排间全覆盖防护挡封，保障人体与杂物安全。',
-                btnDescEN: 'Complete overlapping covers block debris dropping inside.',
-                categoryCN: '精细防线 | GAP BARRIERS',
-                categoryEN: 'TACTICAL SHIELDS | SAFETY OVERLAP BARRIERS',
-                mainTitleCN: '全封闭平台防坠系统，消灭任何咬合盲区',
-                mainTitleEN: 'Overlapping Fall-Shields For Extreme Gap Protection',
-                detailDescCN: '看台排与排之间装配有度角契合的不锈钢密封防坠挡块。台阶动作合拢、拉伸时全程严密咬合覆盖，不留下机械空隙，从而将精密连杆传动件及螺母导轨槽全面覆护，有效杜绝随身小物件如手机、首饰跌落卷噬，同时降低噪音达30%以上，更柔和低噪。',
-                detailDescEN: 'Fully sealed flexible side blocking panel shields are integrated beneath every active step overlap to prevent items like jewelry or phones from accidentally rolling into gear lines.',
-                image: 'https://img-reg-ab.imagency.cn/e/2effed62039f391297e9eee589427d67.jpg'
+                btnTitleCN: '无棱角线条',
+                btnTitleEN: 'Sleek Curved Outlines',
+                btnDescCN: '所有线条均采用柔和过渡，与建筑自然融合。',
+                btnDescEN: 'Linear design with soft transitions that blend into rooms.',
+                categoryCN: '柔和流线 / ORGANIC CURVES',
+                categoryEN: 'CHAMFER ARCHITECTURE | ANTI-COLLISION LINE',
+                mainTitleCN: '所有线条均采用柔和过渡，提升空间整体性',
+                mainTitleEN: 'Soft Rounded Outlines Flow Into Natural Architectural Formats',
+                detailDescCN: '所有线条均采用柔和过渡，与建筑自然融合。倒角圆弧工艺平顺过渡，在避免意外磕碰发生的同时强化视觉优雅度。',
+                detailDescEN: 'By crafting subtle organic corner transitions across both handles and panels, ALTULA adds high-end architectural softness while guaranteeing bump-resistant safety.',
+                image: 'https://img-reg-ab.imagency.cn/e/9f41c71e27f68a5ed64a7dd5411341b7.jpg'
               },
               {
                 idx: 3,
                 num: '04',
-                btnTitleCN: '主动式毫米波探测防闯入',
-                btnTitleEN: 'Intruders Detection Radar',
-                btnDescCN: '毫米波雷达360°扇状扫描，遇障阻毫秒级自锁。',
-                btnDescEN: 'High-frequency radar constructs border warnings online.',
-                categoryCN: '主动感知 | ACTIVE SAFETY',
-                categoryEN: 'ACTIVE SCANNING | ELECTROMAGNETIC FIELD',
-                mainTitleCN: '高敏雷达微米主动防闯入，瞬时阻尼锁死',
-                mainTitleEN: 'High-Precision Micro-Radar Dynamic Anti-Intrusion Shield',
-                detailDescCN: '于看台下方多侧集成定轴微米级毫米波有源感应雷达矩阵，360°向外构建空气感知边界。不受多灰沙尘及反射光条件折绕限制。看台机电拉合过程中，一旦有外在肢体、杂物障碍、儿童及温血宠物侵犯警告防线，主板在10毫秒内触发智能停止运行。',
-                detailDescEN: 'Embedded ultra-high resolution microwave transmitters create dynamic warnings mapping space detail around rotating paths, completely eliminating risk elements.',
-                image: 'https://img-reg-ab.imagency.cn/e/a05e5b996f92b5642e010bd4cb7c2153.jpg'
+                btnTitleCN: '色彩定制',
+                btnTitleEN: 'Bespoke Colorways',
+                btnDescCN: '支持全色系定制，与空间色调保持一致。',
+                btnDescEN: 'Supports infinite color palettes to match existing decors.',
+                categoryCN: '色彩美学 / CHROMATIC PURSUIT',
+                categoryEN: 'BESPOKE FINISHES | CHROME HARMONY',
+                mainTitleCN: '支持全色系定制，传递无出其右的贵重质感',
+                mainTitleEN: 'Personalized Palettes Maintain Sovereign Architectural Harmony',
+                detailDescCN: '支持全色系定制，与空间色调保持一致。我们提供多达一百种精奢色板选择，从天然烟熏色木装潢到艺术级织物表面，均能按需适配。',
+                detailDescEN: 'Select from custom paint finishes, precious anodized metals, and performance textiles to seamlessly coordinate with any dynamic workspace theme.',
+                image: 'https://img-reg-ab.imagency.cn/e/2ad933f78bf48d566f9e4dfde95ac73e.png'
               }
             ];
 
-            const activeItem = safetyProtocols[activeTab] || safetyProtocols[0];
+            const activeItem = aestheticsProtocols[activeTab] || aestheticsProtocols[0];
 
             return (
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-stretch mt-4 relative z-20">
-                {/* Left Column: Premium Rounded showcase card with integrated text inside (widened to 7 cols) */}
+                {/* Left Column: Image Showcase */}
                 <div className="lg:col-span-7 flex flex-col justify-start relative">
                   <div className="relative aspect-[4/3] w-full rounded-[2.5rem] overflow-hidden border border-neutral-800/40 shadow-2xl group bg-[#111214]">
-                    {/* Visual representation */}
                     <img 
                       src={activeItem.image} 
                       alt={language === 'CN' ? activeItem.btnTitleCN : activeItem.btnTitleEN} 
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-103"
                       referrerPolicy="no-referrer"
                     />
-                    
-                    {/* Rich dark gradient mask - sized to match text content height for clean image presentation */}
                     <div className="absolute bottom-0 left-0 right-0 h-[55%] bg-gradient-to-t from-black via-black/80 to-transparent pointer-events-none z-10"></div>
                     
-                    {/* Bottom-left integrated text within image frame with great readability */}
+                    {/* Floating Info */}
                     <div className="absolute bottom-8 left-8 right-8 z-20 text-left space-y-3.5 animate-fade-in pointer-events-none">
                       <div className="flex items-center gap-2">
                         <span className="text-brand-gold text-[10px] font-mono font-bold tracking-widest uppercase bg-brand-gold/20 px-2 py-0.5 rounded-md">
@@ -393,41 +398,35 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
                   </div>
                 </div>
 
-                {/* Right Column: General Safety Header & 2x2 layout buttons selectors (tightened spacing, narrowed to 5 cols) */}
+                {/* Right Column: Tab Selectors */}
                 <div className="lg:col-span-5 flex flex-col justify-start py-2 space-y-6 md:space-y-8 relative z-25">
-                  
-                  {/* General Safety title representing the main theme */}
                   <div className="space-y-4 text-left">
                     <div className="flex items-center gap-2">
                       <span className="text-brand-gold text-[10px] md:text-xs font-mono tracking-[0.25em] uppercase font-bold">
-                        {language === 'CN' ? '安全配置' : 'SAFETY CONFIGURATION'}
+                        {language === 'CN' ? '设计理念' : 'DESIGN PHILOSOPHY'}
                       </span>
                     </div>
 
                     <h3 className="text-3.5xl md:text-[44px] lg:text-[48px] font-black text-white tracking-tight leading-tight md:leading-[1.1]">
-                      {language === 'CN' ? '安全是底层逻辑' : 'Safety is our Foundational Logic'}
+                      {language === 'CN' ? '不被注意，才是最好的设计' : 'The Best Design is the One That Goes Unnoticed'}
                     </h3>
 
                     <p className="text-stone-200 font-normal text-sm md:text-[14.5px] leading-relaxed max-w-2xl mt-3">
                       {language === 'CN'
-                        ? '安全不仅是标准，更是 ALTULA 产品设计的底层逻辑。我们构建了从硬件到软件的全维度安全防护体系，多重机制相互配合，让每一次使用都安全无虞。'
-                        : 'Safety is not just an industry standard, but the foundational philosophy of ALTULA product design. We have built a comprehensive dimensional safety protection framework from hardware to software integrating multiple mechanisms seamlessly.'}
+                        ? '我们相信，真正好的空间设施，应该在不使用时"消失"，在使用时"恰到好处"。ALTULA摒弃多余的装饰与突兀的结构，通过精确的模数化设计，让收合后的看台与墙面、地面形成完整的视觉平面。它不是被摆放进去的设备，而是与空间共同生长的组成部分。'
+                        : 'We believe that truly great spatial components should disappear when not in use and perform flawlessly when active. By abandoning superfluous accessories and obtrusive frameworks, ALTULA enables retracted seating decks to form a perfectly flush wall-floor visual plane. It is not just gear dropped in place, but an integral coordinate growing with the room.'}
                     </p>
                   </div>
 
-                  {/* 2x2 selector tab cards panel representing "极致细节追求" counterpart */}
+                  {/* 2x2 buttons layout */}
                   <div className="text-left relative z-30">
-
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      {safetyProtocols.map((item) => {
+                      {aestheticsProtocols.map((item) => {
                         const isActive = activeTab === item.idx;
                         return (
                           <button
                             key={item.idx}
-                            onClick={() => {
-                              console.log('Switched safety config step to code:', item.idx);
-                              setActiveTab(item.idx);
-                            }}
+                            onClick={() => setActiveTab(item.idx)}
                             className={`w-full text-left p-5 rounded-2xl border transition-all duration-300 select-none flex flex-col justify-between min-h-[110px] cursor-pointer focus:outline-none relative z-40 ${
                               isActive
                                 ? 'bg-[#12110e]/95 border-brand-gold/25 shadow-lg shadow-brand-gold/5 text-white'
@@ -457,7 +456,6 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
                       })}
                     </div>
                   </div>
-
                 </div>
               </div>
             );
@@ -465,22 +463,22 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
         </div>
       </div>
 
-      {/* ── Immersive LIGHT BRANDED UNDERNEATH CTA (Luxurious Off-White with gold) ── */}
+      {/* ── Immersive LIGHT BRANDED UNDERNEATH CTA ── */}
       <div className="max-w-7xl mx-auto px-6 md:px-12 mb-20">
         <div className="bg-gradient-to-b from-white to-[#FAF9F6] rounded-[2.5rem] p-12 md:p-20 text-center border border-stone-200/60 shadow-luxury w-full relative overflow-hidden reveal-up">
           <div className="absolute top-[10%] left-1/2 -translate-x-1/2 w-[350px] h-[350px] bg-brand-gold/5 blur-[90px] rounded-full pointer-events-none z-0"></div>
           
           <div className="relative z-10 max-w-3xl mx-auto space-y-6">
             <span className="text-brand-gold text-[10px] tracking-[0.25em] uppercase font-bold block">
-              {language === 'CN' ? '空间重设 · 精准定制' : 'DYNAMIC SPATIAL BLUEPRINTS'}
+              {language === 'CN' ? '空间重设 · 臻美体验' : 'BEAUTIFUL SPATIAL BALANCING'}
             </span>
             <h3 className="text-3xl md:text-5xl font-black text-brand-dark tracking-tight leading-none">
-              {language === 'CN' ? '体验前沿技术带来的空间变革' : 'Experience the spatial revolution driven by leading-edge technology'}
+              {language === 'CN' ? '体验美学与技术的完美融合' : 'Experience the Perfect Fusion of Aesthetics & Tech'}
             </h3>
             <p className="text-gray-550 font-light text-sm md:text-base max-w-xl mx-auto leading-relaxed">
               {language === 'CN'
-                ? 'ALTULA 的精密组件工程师与多功能场景规划专家随时就位，为您解构看台系统的无限应用。'
-                : 'Our design experts and material scientists are ready to assist with high-end digital models and tailored architectural fits.'}
+                ? 'ALTULA的精密组件工程师与多场景规划专家随时就位，为您解构看台系统的无限应用'
+                : 'ALTULA precision hardware engineers and multi-scenario planners are standing by to decode the limitless possibilities of our seating systems.'}
             </p>
             <div className="pt-6">
               <button
@@ -498,3 +496,4 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
     </div>
   );
 }
+

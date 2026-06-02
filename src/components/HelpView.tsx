@@ -178,14 +178,14 @@ export default function HelpView({ onNavigate, language }: HelpViewProps) {
         <div className="border-b border-gray-200 pb-10 mb-12 text-center md:text-left md:flex md:items-center md:justify-between">
           <div>
             <span className="text-brand-gold uppercase tracking-widest text-xs font-semibold mb-2 block">
-              {language === 'CN' ? '尊享 7x24 工程级技术支持与运维知识库' : 'ENGINEERING ACADEMY & RESOURCES'}
+              {language === 'CN' ? '技术支持与运维知识库' : 'ENGINEERING ACADEMY & RESOURCES'}
             </span>
             <h1 className="text-4xl md:text-5xl font-extrabold text-brand-dark tracking-tight mb-2">
               {language === 'CN' ? '帮助文档与支持中心' : 'Support & Technical Deck'}
             </h1>
             <p className="text-gray-500 font-light text-sm max-w-xl">
               {language === 'CN'
-                ? '下载官方精准安装图纸、气动液压排查手册以及高等级建筑学荷载计算白皮书。'
+                ? '下载官方精准安装图纸、故障排查手册、产品规格书等。'
                 : 'Acquire precise specifications layouts, BIM connectors model packets, and troubleshooting guides.'}
             </p>
           </div>

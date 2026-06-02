@@ -131,14 +131,14 @@ export default function OrdersView({ onNavigate, language }: OrdersViewProps) {
         <div className="border-b border-gray-200 pb-10 mb-12 text-center md:text-left md:flex md:items-center md:justify-between">
           <div>
             <span className="text-brand-gold uppercase tracking-widest text-xs font-semibold mb-2 block">
-              {language === 'CN' ? '实时协同 与 柔性采购追踪' : 'SECURE ORDER DISCOVER & TRACKING'}
+              {language === 'CN' ? '全流程透明化进度追踪' : 'SECURE ORDER DISCOVER & TRACKING'}
             </span>
             <h1 className="text-4xl md:text-5xl font-extrabold text-brand-dark tracking-tight mb-2">
               {language === 'CN' ? '订单查询系统' : 'Order Tracking Center'}
             </h1>
             <p className="text-gray-500 font-light text-sm max-w-xl">
               {language === 'CN'
-                ? '查看您订购的柔性空间伸缩看台与模块化座椅的实时工厂排产及物流状态。'
+                ? '查看您订单的实时工厂排产及物流状态'
                 : 'Monitor production phases, alignment structural checks and live tracking log metrics.'}
             </p>
           </div>

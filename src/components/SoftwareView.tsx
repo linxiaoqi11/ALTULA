@@ -135,14 +135,14 @@ export default function SoftwareView({ onNavigate, language }: SoftwareViewProps
         <div className="border-b border-gray-200 pb-10 mb-12 text-center md:text-left md:flex md:items-center md:justify-between">
           <div>
             <span className="text-brand-gold uppercase tracking-widest text-xs font-semibold mb-2 block">
-              {language === 'CN' ? '数字化软件套件与硬件控制中心固件' : 'ALTULA SPATIAL CAD & FIRMWARE SUITES'}
+              {language === 'CN' ? '官方正版控制软件与工具集' : 'ALTULA SPATIAL CAD & FIRMWARE SUITES'}
             </span>
             <h1 className="text-4xl md:text-5xl font-extrabold text-brand-dark tracking-tight mb-2">
               {language === 'CN' ? '软件下载中心' : 'Software Downloads'}
             </h1>
             <p className="text-gray-500 font-light text-sm max-w-xl">
               {language === 'CN'
-                ? '下载官方正版三维排比制图CAD插件、智能遥控APP以及一键固件包调频系统。'
+                ? '下载官方正下载官方正版软件、智能遥控 APP 以及最新固件升级包。'
                 : 'Acquire precise architectural CAD modeling modules and remote console applications.'}
             </p>
           </div>
