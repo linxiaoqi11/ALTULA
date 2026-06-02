@@ -490,7 +490,7 @@ export default function ProductsView({ onNavigate, language }: ProductsViewProps
                     </div>
 
                     {/* Bottom action trigger bar */}
-                    <div className="flex flex-wrap items-center justify-between gap-3 pt-3.5 border-t border-stone-100 px-1 mt-2">
+                    <div className="flex items-center justify-between gap-3 pt-3.5 border-t border-stone-100 px-1 mt-2">
                       {/* Custom materials colors list */}
                       <div className="flex items-center gap-2">
                         <span className="text-[9px] font-mono tracking-wider text-stone-400 uppercase">
@@ -511,6 +511,18 @@ export default function ProductsView({ onNavigate, language }: ProductsViewProps
                           />
                         </div>
                       </div>
+
+                      {/* Configurator button for retractable stand category */}
+                      {prod.category === 'retractable' && (
+                        <a
+                          href="https://ui.hsycms.com/page/01/set/"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="border border-brand-gold text-brand-gold hover:bg-brand-gold hover:text-white px-4 py-1.5 rounded-full text-xs font-bold leading-none cursor-pointer transition-all duration-300 shadow-sm shrink-0"
+                        >
+                          {language === 'CN' ? '配置方案' : 'Configure'}
+                        </a>
+                      )}
                     </div>
                   </div>
                 );
@@ -531,12 +543,14 @@ export default function ProductsView({ onNavigate, language }: ProductsViewProps
                 ? '支持输入建筑立面长宽高尺寸，由微阻变频算法为您测算出精确座位排比以及安全行径路径。'
                 : 'Select fabrics, timbers and power layouts in real-time.'}
             </p>
-            <button
-              onClick={() => onNavigate('configurator')}
-              className="btn-gold px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest cursor-pointer hover:scale-105 transition-transform"
+            <a
+              href="https://ui.hsycms.com/page/01/set/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest cursor-pointer hover:scale-105 transition-transform inline-block"
             >
               {language === 'CN' ? '进入在线配置方案' : 'Start My Configuration'}
-            </button>
+            </a>
           </div>
         </div>
       </div>

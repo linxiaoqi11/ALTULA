@@ -578,13 +578,15 @@ export default function AboutView({ onNavigate, language }: AboutViewProps) {
               </p>
               
               <div className="flex flex-col gap-4">
-                <button
-                  onClick={() => onNavigate('configurator')}
+                <a
+                  href="https://ui.hsycms.com/page/01/set/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="bg-[#BFA15F] hover:bg-[#A98D4D] text-brand-dark font-black text-xs py-4 px-8 rounded-full cursor-pointer uppercase tracking-widest transition-colors flex items-center justify-center gap-2"
                 >
                   <span>{language === 'CN' ? '立即在线配置' : 'Launch Configurator'}</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
                 <button
                   onClick={() => onNavigate('contact')}
                   className="bg-transparent hover:bg-white/5 border border-white/20 text-white font-bold text-xs py-4 px-8 rounded-full cursor-pointer uppercase tracking-widest transition-all"

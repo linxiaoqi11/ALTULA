@@ -83,8 +83,9 @@ export default function Footer({ onNavigate, language }: FooterProps) {
               </li>
               <li>
                 <a
-                  href="#"
-                  onClick={(e) => handleLinkClick('configurator', e)}
+                  href="https://ui.hsycms.com/page/01/set/"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="hover:text-brand-gold transition-colors"
                 >
                   {language === 'CN' ? '配置方案' : 'Online Configurator'}

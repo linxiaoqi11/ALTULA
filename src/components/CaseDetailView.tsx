@@ -78,13 +78,15 @@ export default function CaseDetailView({ caseId, onNavigate, language }: CaseDet
             </div>
 
             <div className="pt-6 border-t border-gray-100">
-              <button
-                onClick={() => onNavigate('configurator')}
+              <a
+                href="https://ui.hsycms.com/page/01/set/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full btn-gold text-center py-3.5 rounded-lg text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-sm"
               >
                 <span>{language === 'CN' ? '咨询定制同款配置方案' : 'Consult This Model'}</span>
                 <ChevronRight className="w-4 h-4" />
-              </button>
+              </a>
             </div>
           </div>
         </div>

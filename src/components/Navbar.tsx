@@ -11,6 +11,8 @@ interface NavbarProps {
 export default function Navbar({ currentPage, onNavigate, language, setLanguage }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileTechOpen, setMobileTechOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,7 +27,7 @@ export default function Navbar({ currentPage, onNavigate, language, setLanguage 
   }, []);
 
   // Pages with a dark hero banner at the very top benefit from a transparent menu initially for seamless overlaying.
-  const hasDarkHero = currentPage === 'home' || currentPage === 'tech' || currentPage === 'about';
+  const hasDarkHero = currentPage === 'home' || ['tech', 'tech-comfort', 'tech-smart', 'tech-safety'].includes(currentPage) || currentPage === 'about';
   const displayScrolled = scrolled || !hasDarkHero;
 
   const handleLinkClick = (page: string, e: React.MouseEvent, params?: any) => {
@@ -96,25 +98,68 @@ export default function Navbar({ currentPage, onNavigate, language, setLanguage 
           >
             {language === 'CN' ? '应用' : 'Applications'}
           </a>
-          <a
-            href="#"
-            onClick={(e) => handleLinkClick('tech', e)}
-            className={`text-sm font-medium transition-colors tracking-wide ${
-              currentPage === 'tech'
-                ? 'text-brand-gold'
-                : displayScrolled
-                ? 'text-brand-dark hover:text-brand-gold'
-                : 'text-white hover:text-brand-gold'
-            }`}
-          >
-            {language === 'CN' ? '技术' : 'Technology'}
-          </a>
+          {/* Luxury Dropdown for Technology ("技术") */}
+          <div className="relative group/tech">
+            <button
+              className={`text-sm font-medium transition-colors tracking-wide flex items-center gap-1 cursor-pointer py-1 ${
+                ['tech', 'tech-comfort', 'tech-smart', 'tech-safety'].includes(currentPage)
+                  ? 'text-brand-gold'
+                  : displayScrolled
+                  ? 'text-brand-dark hover:text-brand-gold'
+                  : 'text-white hover:text-brand-gold'
+              }`}
+            >
+              <span>{language === 'CN' ? '技术' : 'Technology'}</span>
+              <svg className="w-2.5 h-2.5 transition-transform group-hover/tech:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            {/* Secondary dropdown items */}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 opacity-0 pointer-events-none group-hover/tech:opacity-100 group-hover/tech:pointer-events-auto transition-all duration-300 z-50">
+              <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-2.5 min-w-[155px] space-y-0.5 text-center flex flex-col">
+                <a
+                  href="#"
+                  onClick={(e) => handleLinkClick('tech-comfort', e)}
+                  className={`block px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                    currentPage === 'tech-comfort' || currentPage === 'tech'
+                      ? 'bg-brand-gold/10 text-brand-gold'
+                      : 'text-brand-dark hover:bg-stone-50 hover:text-brand-gold'
+                  }`}
+                >
+                  {language === 'CN' ? '美学与舒适' : 'Aesthetics & Comfort'}
+                </a>
+                <a
+                  href="#"
+                  onClick={(e) => handleLinkClick('tech-smart', e)}
+                  className={`block px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                    currentPage === 'tech-smart'
+                      ? 'bg-brand-gold/10 text-brand-gold'
+                      : 'text-brand-dark hover:bg-stone-50 hover:text-brand-gold'
+                  }`}
+                >
+                  {language === 'CN' ? '智能与高效' : 'Smart & Efficient'}
+                </a>
+                <a
+                  href="#"
+                  onClick={(e) => handleLinkClick('tech-safety', e)}
+                  className={`block px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                    currentPage === 'tech-safety'
+                      ? 'bg-brand-gold/10 text-brand-gold'
+                      : 'text-brand-dark hover:bg-stone-50 hover:text-brand-gold'
+                  }`}
+                >
+                  {language === 'CN' ? '安全配置' : 'Safety Features'}
+                </a>
+              </div>
+            </div>
+          </div>
           <a
             href="#"
             onClick={(e) => handleLinkClick('about', e)}
             className={`text-sm font-medium transition-colors tracking-wide ${
               currentPage === 'about'
-                ? 'text-brand-gold'
+                ? 'text-brand-gold font-semibold'
                 : displayScrolled
                 ? 'text-brand-dark hover:text-brand-gold'
                 : 'text-white hover:text-brand-gold'
@@ -122,6 +167,64 @@ export default function Navbar({ currentPage, onNavigate, language, setLanguage 
           >
             {language === 'CN' ? '关于ALTULA' : 'About Us'}
           </a>
+
+          {/* Luxury Dropdown for Services ("服务") */}
+          <div className="relative group/services">
+            <button
+              className={`text-sm font-medium transition-colors tracking-wide flex items-center gap-1 cursor-pointer py-1 ${
+                currentPage === 'orders' || currentPage === 'help' || currentPage === 'software'
+                  ? 'text-brand-gold'
+                  : displayScrolled
+                  ? 'text-brand-dark hover:text-brand-gold'
+                  : 'text-white hover:text-brand-gold'
+              }`}
+            >
+              <span>{language === 'CN' ? '服务' : 'Services'}</span>
+              <svg className="w-2.5 h-2.5 transition-transform group-hover/services:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            {/* Secondary dropdown items */}
+            <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2.5 opacity-0 pointer-events-none group-hover/services:opacity-100 group-hover/services:pointer-events-auto transition-all duration-300 z-50">
+              <div className="bg-white rounded-xl shadow-xl border border-gray-100 p-2.5 min-w-[155px] space-y-0.5 text-center flex flex-col">
+                <a
+                  href="#"
+                  onClick={(e) => handleLinkClick('orders', e)}
+                  className={`block px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                    currentPage === 'orders'
+                      ? 'bg-brand-gold/10 text-brand-gold'
+                      : 'text-brand-dark hover:bg-stone-50 hover:text-brand-gold'
+                  }`}
+                >
+                  {language === 'CN' ? '订单查询' : 'Order Inquiry'}
+                </a>
+                <a
+                  href="#"
+                  onClick={(e) => handleLinkClick('help', e)}
+                  className={`block px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                    currentPage === 'help'
+                      ? 'bg-brand-gold/10 text-brand-gold'
+                      : 'text-brand-dark hover:bg-stone-50 hover:text-brand-gold'
+                  }`}
+                >
+                  {language === 'CN' ? '帮助文档' : 'Help Documentation'}
+                </a>
+                <a
+                  href="#"
+                  onClick={(e) => handleLinkClick('software', e)}
+                  className={`block px-4 py-2 rounded-lg text-xs font-bold transition-all whitespace-nowrap ${
+                    currentPage === 'software'
+                      ? 'bg-brand-gold/10 text-brand-gold'
+                      : 'text-brand-dark hover:bg-stone-50 hover:text-brand-gold'
+                  }`}
+                >
+                  {language === 'CN' ? '软件下载' : 'Software Downloads'}
+                </a>
+              </div>
+            </div>
+          </div>
+
           <a
             href="#"
             onClick={(e) => handleLinkClick('news', e)}
@@ -157,7 +260,7 @@ export default function Navbar({ currentPage, onNavigate, language, setLanguage 
           ></div>
 
           {/* Language selection */}
-          <div className="flex gap-2 text-xs font-semibold tracking-wider">
+          <div className="flex items-center gap-1 text-xs font-semibold tracking-wider">
             <button
               onClick={() => setLanguage('CN')}
               className={`transition-colors py-1 px-1.5 rounded ${
@@ -170,7 +273,7 @@ export default function Navbar({ currentPage, onNavigate, language, setLanguage 
             >
               CN
             </button>
-            <span className={displayScrolled ? 'text-gray-300' : 'text-white/40'}>/</span>
+            <span className={`select-none self-center leading-none ${displayScrolled ? 'text-gray-300' : 'text-white/40'}`}>/</span>
             <button
               onClick={() => setLanguage('EN')}
               className={`transition-colors py-1 px-1.5 rounded ${
@@ -186,8 +289,9 @@ export default function Navbar({ currentPage, onNavigate, language, setLanguage 
           </div>
 
           <a
-            href="#"
-            onClick={(e) => handleLinkClick('configurator', e)}
+            href="https://ui.hsycms.com/page/01/set/"
+            target="_blank"
+            rel="noopener noreferrer"
             className={`text-xs font-semibold border px-5 py-2.5 rounded-full transition-all tracking-wider ${
               displayScrolled
                 ? 'text-brand-dark border-brand-dark hover:bg-brand-dark hover:text-white'
@@ -236,13 +340,54 @@ export default function Navbar({ currentPage, onNavigate, language, setLanguage 
           >
             {language === 'CN' ? '应用案例' : 'Applications'}
           </a>
-          <a
-            href="#"
-            onClick={(e) => handleLinkClick('tech', e)}
-            className="text-2xl font-light text-brand-dark hover:text-brand-gold transition-colors"
-          >
-            {language === 'CN' ? '特色技术' : 'Technology'}
-          </a>
+          {/* Mobile technology category accordion container */}
+          <div className="flex flex-col items-center">
+            <button
+              onClick={() => setMobileTechOpen(!mobileTechOpen)}
+              className={`text-2xl font-light hover:text-brand-gold transition-colors flex items-center justify-center gap-1 cursor-pointer py-1 ${
+                ['tech', 'tech-comfort', 'tech-smart', 'tech-safety'].includes(currentPage)
+                  ? 'text-brand-gold font-normal'
+                  : 'text-brand-dark'
+              }`}
+            >
+              <span>{language === 'CN' ? '特色技术' : 'Technology'}</span>
+              <svg className={`w-3.5 h-3.5 transition-transform duration-350 ${mobileTechOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            <div className={`flex flex-col gap-3.5 mt-3 overflow-hidden transition-all duration-300 items-center justify-center ${
+              mobileTechOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
+            }`}>
+              <a
+                href="#"
+                onClick={(e) => handleLinkClick('tech-comfort', e)}
+                className={`text-lg font-light hover:text-brand-gold transition-colors ${
+                  currentPage === 'tech-comfort' || currentPage === 'tech' ? 'text-brand-gold font-normal' : 'text-gray-500'
+                }`}
+              >
+                {language === 'CN' ? '— 美学与舒适' : '— Aesthetics & Comfort'}
+              </a>
+              <a
+                href="#"
+                onClick={(e) => handleLinkClick('tech-smart', e)}
+                className={`text-lg font-light hover:text-brand-gold transition-colors ${
+                  currentPage === 'tech-smart' ? 'text-brand-gold font-normal' : 'text-gray-500'
+                }`}
+              >
+                {language === 'CN' ? '— 智能与高效' : '— Smart & Efficient'}
+              </a>
+              <a
+                href="#"
+                onClick={(e) => handleLinkClick('tech-safety', e)}
+                className={`text-lg font-light hover:text-brand-gold transition-colors ${
+                  currentPage === 'tech-safety' ? 'text-brand-gold font-normal' : 'text-gray-500'
+                }`}
+              >
+                {language === 'CN' ? '— 安全配置' : '— Safety Features'}
+              </a>
+            </div>
+          </div>
           <a
             href="#"
             onClick={(e) => handleLinkClick('about', e)}
@@ -250,6 +395,56 @@ export default function Navbar({ currentPage, onNavigate, language, setLanguage 
           >
             {language === 'CN' ? '关于ALTULA' : 'About Us'}
           </a>
+
+          {/* Mobile services category accordion container */}
+          <div className="flex flex-col items-center">
+            <button
+              onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
+              className={`text-2xl font-light hover:text-brand-gold transition-colors flex items-center justify-center gap-1 cursor-pointer py-1 ${
+                currentPage === 'orders' || currentPage === 'help' || currentPage === 'software'
+                  ? 'text-brand-gold font-normal'
+                  : 'text-brand-dark'
+              }`}
+            >
+              <span>{language === 'CN' ? '服务支持' : 'Services'}</span>
+              <svg className={`w-3.5 h-3.5 transition-transform duration-350 ${mobileServicesOpen ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            
+            <div className={`flex flex-col gap-3.5 mt-3 overflow-hidden transition-all duration-300 items-center justify-center ${
+              mobileServicesOpen ? 'max-h-[300px] opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
+            }`}>
+              <a
+                href="#"
+                onClick={(e) => handleLinkClick('orders', e)}
+                className={`text-lg font-light hover:text-brand-gold transition-colors ${
+                  currentPage === 'orders' ? 'text-brand-gold font-normal' : 'text-gray-500'
+                }`}
+              >
+                {language === 'CN' ? '— 订单查询' : '— Order Inquiry'}
+              </a>
+              <a
+                href="#"
+                onClick={(e) => handleLinkClick('help', e)}
+                className={`text-lg font-light hover:text-brand-gold transition-colors ${
+                  currentPage === 'help' ? 'text-brand-gold font-normal' : 'text-gray-500'
+                }`}
+              >
+                {language === 'CN' ? '— 帮助文档' : '— Help Docs'}
+              </a>
+              <a
+                href="#"
+                onClick={(e) => handleLinkClick('software', e)}
+                className={`text-lg font-light hover:text-brand-gold transition-colors ${
+                  currentPage === 'software' ? 'text-brand-gold font-normal' : 'text-gray-500'
+                }`}
+              >
+                {language === 'CN' ? '— 软件下载' : '— Software download'}
+              </a>
+            </div>
+          </div>
+
           <a
             href="#"
             onClick={(e) => handleLinkClick('news', e)}
@@ -266,13 +461,15 @@ export default function Navbar({ currentPage, onNavigate, language, setLanguage 
           </a>
           <div className="h-px w-24 bg-gray-200 my-2 mx-auto"></div>
           <a
-            href="#"
-            onClick={(e) => handleLinkClick('configurator', e)}
+            href="https://ui.hsycms.com/page/01/set/"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
             className="text-2xl font-normal text-brand-gold hover:text-amber-600 transition-colors"
           >
             {language === 'CN' ? '在线选配方案' : 'Configure Online'}
           </a>
-          <div className="flex gap-4 justify-center mt-4 text-xs font-semibold tracking-wider text-gray-400">
+          <div className="flex items-center gap-4 justify-center mt-4 text-xs font-semibold tracking-wider text-gray-400">
             <button
               onClick={() => {
                 setLanguage('CN');
@@ -282,7 +479,7 @@ export default function Navbar({ currentPage, onNavigate, language, setLanguage 
             >
               中文 (CN)
             </button>
-            <span>/</span>
+            <span className="select-none self-center leading-none">/</span>
             <button
               onClick={() => {
                 setLanguage('EN');

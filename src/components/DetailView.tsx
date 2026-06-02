@@ -356,13 +356,15 @@ export default function DetailView({ productId, onNavigate, language }: DetailVi
               {enrichedDescription}
             </p>
             <div className="mt-8 flex flex-wrap gap-4 z-20 relative">
-              <button
-                onClick={() => onNavigate('configurator', { productType: product.id })}
+              <a
+                href="https://ui.hsycms.com/page/01/set/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-gold px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest inline-flex items-center gap-2 cursor-pointer shadow-lg"
               >
                 <span>{language === 'CN' ? '立即在线配置' : 'Configure Now'}</span>
                 <Sliders className="w-4 h-4 text-white" />
-              </button>
+              </a>
               <button
                 onClick={() => handleScrollTo('consulting-form')}
                 className="px-8 py-3.5 border border-white/30 hover:border-white text-white rounded-full text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition-all cursor-pointer"

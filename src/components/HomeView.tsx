@@ -752,15 +752,17 @@ export default function HomeView({ onNavigate, language }: HomeViewProps) {
             </p>
           </div>
           <div className="reveal-up shrink-0">
-            <button 
-              onClick={() => onNavigate('configurator')} 
+            <a 
+              href="https://ui.hsycms.com/page/01/set/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn-gold px-10 py-5 rounded-sm text-sm tracking-widest uppercase font-medium inline-flex items-center gap-2.5 transition-all cursor-pointer"
             >
               <span>{language === 'CN' ? '立即配置方案' : 'Configure Seating Plan'}</span>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
               </svg>
-            </button>
+            </a>
           </div>
         </div>
       </section>

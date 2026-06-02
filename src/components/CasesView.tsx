@@ -136,12 +136,14 @@ export default function CasesView({ onNavigate, language }: CasesViewProps) {
                 ? '线上配置方案，我们会核算结构承压，在24小时内为您出具一份 1v1 极简看台配置书。'
                 : 'Formulate bespoke structural seating with expert layout architects.'}
             </p>
-            <button
-              onClick={() => onNavigate('configurator')}
-              className="btn-gold px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest cursor-pointer hover:scale-105 transition-transform"
+            <a
+              href="https://ui.hsycms.com/page/01/set/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest cursor-pointer hover:scale-105 transition-transform inline-block"
             >
               {language === 'CN' ? '定制专属空间看台' : 'Configure Space Stands Now'}
-            </button>
+            </a>
           </div>
         </div>
       </div>

@@ -5,13 +5,17 @@ import HomeView from './components/HomeView';
 import ProductsView from './components/ProductsView';
 import DetailView from './components/DetailView';
 import AboutView from './components/AboutView';
-import ConfiguratorView from './components/ConfiguratorView';
 import CasesView from './components/CasesView';
 import CaseDetailView from './components/CaseDetailView';
 import TechView from './components/TechView';
+import TechSmartView from './components/TechSmartView';
+import TechSafetyView from './components/TechSafetyView';
 import NewsView from './components/NewsView';
 import NewsDetailView from './components/NewsDetailView';
 import ContactView from './components/ContactView';
+import OrdersView from './components/OrdersView';
+import HelpView from './components/HelpView';
+import SoftwareView from './components/SoftwareView';
 
 export default function App() {
   const [page, setPage] = useState<string>('home');
@@ -59,14 +63,6 @@ export default function App() {
             language={language}
           />
         );
-      case 'configurator':
-        return (
-          <ConfiguratorView
-            initialType={params.productType}
-            onNavigate={handleNavigate}
-            language={language}
-          />
-        );
       case 'cases':
         return <CasesView onNavigate={handleNavigate} language={language} />;
       case 'case-detail':
@@ -78,7 +74,12 @@ export default function App() {
           />
         );
       case 'tech':
+      case 'tech-comfort':
         return <TechView onNavigate={handleNavigate} language={language} />;
+      case 'tech-smart':
+        return <TechSmartView onNavigate={handleNavigate} language={language} />;
+      case 'tech-safety':
+        return <TechSafetyView onNavigate={handleNavigate} language={language} />;
       case 'news':
         return <NewsView onNavigate={handleNavigate} language={language} />;
       case 'news-detail':
@@ -91,6 +92,12 @@ export default function App() {
         );
       case 'contact':
         return <ContactView onNavigate={handleNavigate} language={language} />;
+      case 'orders':
+        return <OrdersView onNavigate={handleNavigate} language={language} />;
+      case 'help':
+        return <HelpView onNavigate={handleNavigate} language={language} />;
+      case 'software':
+        return <SoftwareView onNavigate={handleNavigate} language={language} />;
       default:
         return <HomeView onNavigate={handleNavigate} language={language} />;
     }
