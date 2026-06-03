@@ -182,7 +182,8 @@ export default function ContactView({ onNavigate, language }: ContactViewProps) 
                   left: '-50px',
                   right: '-50px',
                 }}
-                className="border-0"
+                className="border-0 border-none"
+                frameBorder="0"
                 title="Vanguard Industrial Park Map"
                 allowFullScreen
                 referrerPolicy="no-referrer"

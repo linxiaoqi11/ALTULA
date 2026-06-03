@@ -25,7 +25,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 className="h-5 md:h-6 w-auto object-contain opacity-80 hover:opacity-100 transition-opacity duration-300 filter brightness-0 invert"
               />
             </div>
-            <p className="text-gray-500 text-sm font-light leading-relaxed">
+            <p className="text-gray-400 text-sm font-light leading-relaxed">
               {language === 'CN'
                 ? '专注于商业空间活动看台的一站式高端定制与整体解决方案。让物理空间拥有灵活切换的能力。'
                 : 'Focusing on high-end customization and overall solutions for commercial space event stands.'}
@@ -41,7 +41,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 <a
                   href="#"
                   onClick={(e) => handleLinkClick('product-detail', e, { id: 'retractable' })}
-                  className="hover:text-brand-gold transition-colors"
+                  className="text-gray-400 hover:text-brand-gold transition-colors"
                 >
                   {language === 'CN' ? '伸缩活动看台' : 'Retractable Stands'}
                 </a>
@@ -50,7 +50,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 <a
                   href="#"
                   onClick={(e) => handleLinkClick('product-detail', e, { id: 'public' })}
-                  className="hover:text-brand-gold transition-colors"
+                  className="text-gray-400 hover:text-brand-gold transition-colors"
                 >
                   {language === 'CN' ? '公共坐席看台' : 'Public Seating'}
                 </a>
@@ -67,7 +67,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 <a
                   href="#"
                   onClick={(e) => handleLinkClick('cases', e)}
-                  className="hover:text-brand-gold transition-colors"
+                  className="text-gray-400 hover:text-brand-gold transition-colors"
                 >
                   {language === 'CN' ? '应用场景' : 'Applications'}
                 </a>
@@ -76,7 +76,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 <a
                   href="#"
                   onClick={(e) => handleLinkClick('tech', e)}
-                  className="hover:text-brand-gold transition-colors"
+                  className="text-gray-400 hover:text-brand-gold transition-colors"
                 >
                   {language === 'CN' ? '特色技术' : 'Acoustic Tech'}
                 </a>
@@ -86,7 +86,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                   href="https://ui.hsycms.com/page/01/set/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-brand-gold transition-colors"
+                  className="text-gray-400 hover:text-brand-gold transition-colors"
                 >
                   {language === 'CN' ? '配置方案' : 'Online Configurator'}
                 </a>
@@ -103,7 +103,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 <a
                   href="#"
                   onClick={(e) => handleLinkClick('home', e)}
-                  className="hover:text-brand-gold transition-colors"
+                  className="text-gray-400 hover:text-brand-gold transition-colors"
                 >
                   {language === 'CN' ? '关于ALTULA' : 'About Us'}
                 </a>
@@ -112,7 +112,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 <a
                   href="#"
                   onClick={(e) => handleLinkClick('news', e)}
-                  className="hover:text-brand-gold transition-colors"
+                  className="text-gray-400 hover:text-brand-gold transition-colors"
                 >
                   {language === 'CN' ? '资讯中心' : 'News Center'}
                 </a>
@@ -121,7 +121,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 <a
                   href="#"
                   onClick={(e) => handleLinkClick('contact', e)}
-                  className="hover:text-brand-gold transition-colors"
+                  className="text-gray-400 hover:text-brand-gold transition-colors"
                 >
                   {language === 'CN' ? '联系我们' : 'Contact Us'}
                 </a>
@@ -165,7 +165,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-light text-gray-600">
+        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-light text-stone-400">
           <p>
             &copy; 2026 ALTULA Space Solutions. All Rights Reserved. {' '}
             {language === 'CN' ? '领先体育高端子品牌' : 'A Premium Brand of Avant Sports.'}
@@ -176,7 +176,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 href="https://facebook.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-brand-gold transition-colors duration-300"
+                className="text-stone-400 hover:text-brand-gold transition-colors duration-300"
                 title="Facebook"
               >
                 <Facebook className="w-4.5 h-4.5" />
@@ -185,7 +185,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-brand-gold transition-colors duration-300"
+                className="text-stone-400 hover:text-brand-gold transition-colors duration-300"
                 title="LinkedIn"
               >
                 <Linkedin className="w-4.5 h-4.5" />
@@ -194,7 +194,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 href="https://twitter.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-brand-gold transition-colors duration-300"
+                className="text-stone-400 hover:text-brand-gold transition-colors duration-300"
                 title="Twitter"
               >
                 <Twitter className="w-4.5 h-4.5" />
@@ -203,7 +203,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 href="https://instagram.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-brand-gold transition-colors duration-300"
+                className="text-stone-400 hover:text-brand-gold transition-colors duration-300"
                 title="Instagram"
               >
                 <Instagram className="w-4.5 h-4.5" />
@@ -212,7 +212,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 href="https://youtube.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-brand-gold transition-colors duration-300"
+                className="text-stone-400 hover:text-brand-gold transition-colors duration-300"
                 title="YouTube"
               >
                 <Youtube className="w-4.5 h-4.5" />
@@ -221,7 +221,7 @@ export default function Footer({ onNavigate, language }: FooterProps) {
                 href="https://tiktok.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-gray-500 hover:text-brand-gold transition-colors duration-300"
+                className="text-stone-400 hover:text-brand-gold transition-colors duration-300"
                 title="TikTok"
               >
                 <Music className="w-4.5 h-4.5" />
