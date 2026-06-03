@@ -226,73 +226,7 @@ export default function TechView({ onNavigate, language }: TechViewProps) {
         </div>
       </div>
 
-      {/* ── AESTHETICS & COMFORT (美学与舒适 section) ── */}
-      <div id="aesthetics-comfort-section" className="max-w-7xl mx-auto px-6 md:px-12 mb-20 md:mb-24 reveal-up">
-        {/* Section Header */}
-        <div className="max-w-3xl mb-12 md:mb-16 text-left">
-          <div className="flex items-center gap-3 mb-4">
-            <span className="text-brand-gold text-[10px] uppercase tracking-widest font-bold leading-none">
-              {language === 'CN' ? '触感与质感' : 'TEXTURE & SENSIBILITY'}
-            </span>
-          </div>
-          <h2 className="text-3xl md:text-5xl font-black text-brand-dark tracking-tight leading-none mb-6">
-            {language === 'CN' ? '细节见真章，舒适藏于每一处' : 'Details Matter, Comfort is Hidden in Plain Sight'}
-          </h2>
-          <p className="text-stone-600 font-light text-sm md:text-base leading-relaxed">
-            {language === 'CN' 
-              ? '从材质选择到工艺打磨，每一个细节都为更好的体验而生'
-              : 'From material selection to hand craftsmanship, every single detail is born for a superior sensory experience.'}
-          </p>
-        </div>
 
-        {/* 6 Grid Bento-Style Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {aestheticsComfortFeatures.map((item) => (
-            <div 
-              key={item.num}
-              className="group bg-white rounded-3xl border border-stone-200/50 p-6 md:p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5 hover:shadow-luxury hover:border-slate-300/80"
-            >
-              <div>
-                {/* Image Frame with Aspect Ratio */}
-                <div className="relative aspect-[16/10] w-full rounded-2xl overflow-hidden mb-6 bg-stone-100 border border-stone-200/20">
-                  <img 
-                    src={item.image} 
-                    alt={language === 'CN' ? item.titleCN : item.titleEN} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/15 via-transparent to-transparent pointer-events-none"></div>
-                </div>
-
-                {/* Sub-Header with Icon and Number Badge */}
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center">
-                    <span className="w-8 h-8 rounded-lg bg-neutral-100 flex items-center justify-center text-brand-gold/90 shrink-0 border border-stone-200/20 mr-2 group-hover:bg-brand-gold/10 group-hover:text-brand-gold transition-colors duration-300">
-                      {renderIcon(item.iconName, "w-4 h-4")}
-                    </span>
-                    <h3 className="text-base md:text-lg font-black text-brand-dark tracking-tight transition-colors duration-200 group-hover:text-brand-gold">
-                      {language === 'CN' ? item.titleCN : item.titleEN}
-                    </h3>
-                  </div>
-                  <span className="text-[10px] font-mono font-bold text-stone-400 bg-stone-100 px-2 py-0.5 rounded-md pointer-events-none">
-                    {item.num}
-                  </span>
-                </div>
-
-                {/* Inner Content Text */}
-                <p className="text-stone-500 font-light text-xs md:text-[13.5px] leading-relaxed">
-                  {language === 'CN' ? item.descCN : item.descEN}
-                </p>
-              </div>
-
-              {/* Bottom Subtle Interactive Line for Craftsmanship Touch */}
-              <div className="w-full h-[1px] bg-stone-100 mt-6 relative overflow-hidden">
-                <div className="absolute left-0 top-0 h-full w-0 bg-brand-gold group-hover:w-full transition-all duration-500"></div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
 
       {/* ── COMFORT DETAILS (Full screen horizontal section) ── */}
       <div id="safety-config-section" className="w-full bg-[#1E2022] border-y border-neutral-800/40 py-20 md:py-28 relative overflow-hidden text-white my-16">
